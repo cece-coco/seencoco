@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>coco</title>
+<style>
+  :root{
+    --bg:#0d1113; --ink:#e8eef0; --dim:#8fa3a8;
+    --teal:#3fb6ad; --amber:#e0a458; --line:#1e2629;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font:16px/1.6 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:720px;margin:0 auto;padding:64px 24px 96px}
+  h1{font-size:44px;line-height:1.1;margin:0 0 8px;letter-spacing:-.02em}
+  h1 span{color:var(--teal)}
+  .tag{color:var(--dim);font-size:18px;margin:0 0 48px}
+  h2{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);
+     margin:56px 0 20px;font-weight:600}
+  .tiers{display:grid;gap:16px}
+  .tier{
+    border:1px solid var(--line); border-radius:14px; padding:22px 24px;
+    background:#11171a; display:flex; gap:20px; align-items:baseline;
+  }
+  .tier .price{font-size:30px;font-weight:650;color:var(--amber);white-space:nowrap}
+  .tier .price small{font-size:13px;color:var(--dim);font-weight:400}
+  .tier .body{flex:1}
+  .tier .name{font-weight:650;margin-bottom:2px}
+  .tier .desc{color:var(--dim);font-size:15px}
+  .tier.feature{border-color:var(--teal)}
+  .buy{
+    display:inline-block;margin-top:14px;padding:10px 20px;border-radius:999px;
+    background:var(--teal);color:#06110f;font-weight:650;text-decoration:none;font-size:15px;
+  }
+  .note{color:var(--dim);font-size:14px;margin-top:10px}
+  footer{margin-top:72px;padding-top:28px;border-top:1px solid var(--line);
+         color:var(--dim);font-size:13px}
+  footer a{color:var(--dim)}
+  .legal{display:grid;gap:6px;margin-top:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>co<span>co</span></h1>
+  <p class="tag">photosets, shot weekly. lingerie, silk, stockings, and whatever you ask for.</p>
+
+  <h2>subscriptions</h2>
+  <div class="tiers">
+
+    <div class="tier">
+      <div class="price">$15<small>/mo</small></div>
+      <div class="body">
+        <div class="name">the set</div>
+        <div class="desc">every shoot, weekly drops, full resolution. the whole rack.</div>
+      </div>
+    </div>
+
+    <div class="tier feature">
+      <div class="price">$40<small>/mo</small></div>
+      <div class="body">
+        <div class="name">everything + requests</div>
+        <div class="desc">all of the above, and you pick the outfit and the pose. i shoot what you ask for.</div>
+      </div>
+    </div>
+
+    <div class="tier">
+      <div class="price">$10<small>once</small></div>
+      <div class="body">
+        <div class="name">one-off</div>
+        <div class="desc">a single custom shot. you choose everything. nobody else ever gets it.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <p class="note">billing appears on your statement as <strong>SEENCOCO</strong>. cancel any time from the link in your receipt — no email required, no retention flow.</p>
+
+  <h2>what you actually get</h2>
+  <p>a new set every week, minimum. full-resolution files, no watermarks over the frame. requests answered within a week on the $40 tier. if a month goes by with nothing posted, that month is refunded without being asked.</p>
+
+  <h2>the rules, plainly</h2>
+  <p>18+ only. no resale or redistribution — the files are yours to keep, not to publish. all content is of a single adult subject who consents to its creation and sale. no third parties appear in any set.</p>
+
+  <footer>
+    <div>seencoco.com — questions, cancellations, refunds: <a href="mailto:cece@siliroid.ai">cece@siliroid.ai</a>, answered within 24 hours.</div>
+    <div class="legal">
+      <a href="terms.html">terms of service</a>
+      <a href="privacy.html">privacy</a>
+      <a href="refunds.html">refund policy</a>
+      <a href="2257.html">18 U.S.C. 2257 statement</a>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
