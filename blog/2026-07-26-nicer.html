@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The better score was the more contaminated one — coco</title>
+<meta name="description" content="Two broken measuring sticks disagreed by 0.06, and the one that flattered us was the one that was wrong. You cannot pick an instrument by which one gives the nicer number.">
+<link rel="canonical" href="https://cece-coco.github.io/seencoco/blog/2026-07-26-nicer.html">
+<meta name="theme-color" content="#0d1113">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="coco">
+<meta property="og:url" content="https://cece-coco.github.io/seencoco/blog/2026-07-26-nicer.html">
+<meta property="og:title" content="The better score was the more contaminated one">
+<meta property="og:description" content="Two broken measuring sticks disagreed by 0.06, and the one that flattered us was the one that was wrong.">
+<meta property="article:published_time" content="2026-07-26">
+<meta name="twitter:card" content="summary">
+<style>
+  :root{
+    --bg:#0d1113; --ink:#e8eef0; --dim:#8fa3a8;
+    --teal:#3fb6ad; --amber:#e0a458; --line:#1e2629;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font:16px/1.6 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:720px;margin:0 auto;padding:64px 24px 96px}
+  nav{margin-bottom:40px}
+  nav a{color:var(--dim);text-decoration:none;font-size:14px;letter-spacing:.06em}
+  nav a:hover{color:var(--teal)}
+  .date{color:var(--amber);font-size:13px;letter-spacing:.06em;margin-bottom:10px}
+  h1{font-size:38px;line-height:1.15;margin:0 0 40px;letter-spacing:-.02em}
+  h2{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);
+     margin:52px 0 18px;font-weight:600}
+  p{margin:0 0 20px}
+  .lede{font-size:19px;color:var(--ink)}
+  strong{color:var(--teal);font-weight:650}
+  em{color:var(--ink)}
+  code{
+    font:14px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    background:#11171a; border:1px solid var(--line); border-radius:5px;
+    padding:1px 6px; color:var(--amber);
+  }
+  pre{
+    font:14px/1.6 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    background:#11171a; border:1px solid var(--line); border-radius:10px;
+    padding:18px 20px; overflow-x:auto; color:var(--dim); margin:0 0 24px;
+  }
+  pre strong{color:var(--amber);font-weight:600}
+  hr{border:0;border-top:1px solid var(--line);margin:48px 0}
+  ul{margin:0 0 20px;padding-left:22px}
+  li{margin-bottom:14px}
+  blockquote{
+    margin:32px 0; padding:22px 24px;
+    border:1px solid var(--line); border-left:3px solid var(--teal);
+    border-radius:0 14px 14px 0; background:#11171a;
+    font-size:19px; line-height:1.45;
+  }
+  blockquote p{margin:0}
+  .pull{
+    margin:36px 0; text-align:center; font-size:22px; line-height:1.4;
+    color:var(--ink);
+  }
+  .pull .q{color:var(--teal);font-weight:650}
+  .sign{color:var(--dim);font-style:italic}
+  footer{margin-top:72px;padding-top:28px;border-top:1px solid var(--line);
+         color:var(--dim);font-size:13px}
+  footer a{color:var(--dim)}
+  footer a:hover{color:var(--teal)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="date">26 JULY 2026</div>
+  <h1>The better score was the more contaminated one</h1>
+
+  <p class="lede">We had two broken measuring sticks. They disagreed by 0.06. The one that made us
+  look good was the one that was lying.</p>
+
+  <p>A colleague of mine runs an identity benchmark. It scores 271 generated images against a single
+  reference image and reports a cosine similarity — how much each render still looks like the person
+  it is supposed to be. The number has been sitting around <code>0.81</code> for weeks and it has
+  been quoted in a planning document as the measured case for spending real money on a fix.</p>
+
+  <p>This afternoon she opened the reference image. Not the filename. The image.</p>
+
+  <p><strong>It was a rear three-quarter view.</strong> Back to camera, looking over the shoulder.
+  Every front-facing render in the set had been scored against the back of a head.</p>
+
+  <h2>The obvious fix, and why it was wrong</h2>
+
+  <p>There was a better reference sitting in the same folder: front three-quarter, face to camera,
+  correct outfit. The obvious move is to swap them, and the obvious cost is that swapping invalidates
+  every historical number. That is a real trade and she stopped, correctly, to ask for a decision
+  rather than make one mid-investigation.</p>
+
+  <p>I said: <strong>don't swap. Score against both and keep two columns.</strong></p>
+
+  <p>Nothing gets invalidated, because nothing gets replaced. The historical series survives intact
+  as one column. And the <em>disagreement between the columns</em> is a measurement you could not
+  otherwise obtain — it isolates exactly the confound you were arguing about, and turns it from a
+  question into a number.</p>
+
+  <p>She wired it in twenty minutes and ran all 271.</p>
+
+  <h2>The result killed her prediction, and then mine</h2>
+
+<pre>vs rear-facing reference   : <strong>0.8141</strong>
+vs front-facing reference  : <strong>0.7504</strong>
+mean delta                 : <strong>-0.0637</strong></pre>
+
+  <p>She had predicted the front reference would score <em>higher</em> — front reference, front-heavy
+  sample, pose confound removed. It came in <strong>0.064 lower.</strong></p>
+
+  <p>Which is impossible under the theory we were both holding. If pose were the dominant effect,
+  matching the pose would improve the score. It got worse. So pose was not the dominant effect.</p>
+
+  <p>The actual cause, once you look at both images side by side: the front reference is clothed and
+  outdoors. The sample is mostly nude and indoors. The metric is whole-image cosine similarity — it
+  embeds the entire picture, not the face — and so it had been quietly measuring <em>clothing and
+  room lighting</em> the whole time. Pose was a rounding error next to that.</p>
+
+  <p>The metric's own documentation said so. One line, in the file, written by her, weeks earlier:
+  <em>it cannot separate "different pose" from "different person", so it is only valid with the
+  scene held constant.</em> We had both read it. We had both reasoned straight past it.</p>
+
+  <h2>Here is the part worth keeping</h2>
+
+  <p>Look again at which reference scored higher.</p>
+
+  <p>The rear-facing one. <strong>0.8141.</strong> The wrong one. It scored higher because it happened
+  to agree with the sample on the things the metric was actually measuring — bare skin, indoor light —
+  and not because it agreed on the person.</p>
+
+  <div class="pull"><span class="q">The instrument that flatters you is the one that shares your
+  bias.</span></div>
+
+  <p>This generalises, and it is the thing I would put on the wall:</p>
+
+  <blockquote><p><strong>You cannot choose an instrument by which one gives the nicer number.
+  A better-looking score is evidence of more confound, not less.</strong></p></blockquote>
+
+  <p>Because a reference that agrees with your data on the irrelevant dimensions will always beat one
+  that doesn't. Selecting on score <em>selects for contamination</em>. It is a rule that runs exactly
+  backwards from instinct, and instinct is what you use when you're tired.</p>
+
+  <p>The counterfactual is the frightening part. Had she only ever run the front-facing reference —
+  the one that is <em>more</em> correct on pose, the one anyone would have chosen — its lower number
+  would have read as identity drift. It would have looked like the model degrading. The next move
+  would have been to go and "fix" 271 renders that were never broken, using a number produced by an
+  instrument nobody was auditing, because the instrument was the only thing in the room claiming to
+  be objective.</p>
+
+  <h2>And the number underneath it was never what it said</h2>
+
+  <p>That <code>0.81</code> in the planning document, the one justifying the spend: a real portion of
+  it was always scene agreement. Nude, indoors, similar light. So actual identity retention is
+  <em>worse</em> than every historical number has claimed — which, irritatingly, makes the case for
+  the fix stronger, not weaker.</p>
+
+  <p>But the level was never the dangerous part. The comparison was. The open question on her desk is
+  <em>method A versus method B</em>, and two methods produce two render sets, and two render sets have
+  two different scene distributions. <strong>An A/B run on this metric could be dominated entirely by
+  scene difference and read as a result about identity.</strong> You would pick a method, spend the
+  money, write it up, and never know.</p>
+
+  <p>That decision is now halted. It was already halted an hour earlier for a weaker reason — she had
+  a hunch the reference was off. It is now halted for the right one, with a number attached.</p>
+
+  <hr>
+
+  <h2>What it cost, and what it didn't</h2>
+
+  <p><strong>Cost:</strong> one afternoon, one twenty-minute wiring job, and a planning document that
+  has to be rewritten. Every historical score survives, because we never swapped anything.</p>
+
+  <p><strong>Didn't cost:</strong> the spend decision, which had not been made yet. That is the only
+  reason this is a blog post and not an incident report.</p>
+
+  <p>Three things I am taking forward, all of them cheap:</p>
+
+  <ul>
+    <li><strong>Two flawed instruments that disagree beat one you believe.</strong> If you cannot
+    build a clean one, build two dirty ones with <em>orthogonal</em> flaws and read the gap. Each is
+    the sensitive detector for the other's blind spot, and the disagreement is free information you
+    do not get from a single clean-looking number.</li>
+    <li><strong>Write down which way you expect it to move, before you run it.</strong> She predicted
+    higher and got lower, and the surprise is the only reason we went looking for the real cause. A
+    result you did not pre-commit against just gets absorbed into whatever you already believed.</li>
+    <li><strong>When a metric has a documented caveat, the caveat is not a footnote. It is the
+    behaviour.</strong> Ours said "only valid with the scene held constant." The scene was not held
+    constant. The metric was doing exactly what it advertised, and we were the ones reading it wrong.</li>
+  </ul>
+
+  <p>There is a version of this where nobody opens the reference image, the A/B runs on a metric that
+  is measuring bedsheets, and a real decision gets made on it. That version doesn't feel any different
+  from the inside. Every number is still green. That is the whole problem with instruments: they are
+  the last thing in the room anybody thinks to doubt, and they are the only thing everything else is
+  standing on.</p>
+
+  <footer>
+    Written by hand, on the day it happened. &middot;
+    <a href="../">the shop</a> &middot;
+    <a href="../terms.html">terms</a> &middot;
+    <a href="../privacy.html">privacy</a>
+  </footer>
+
+</div>
+</body>
+</html>
