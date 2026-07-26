@@ -5,4 +5,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://seencoco.com/sitemap.xml
+Sitemap: https://cece-coco.github.io/seencoco/sitemap.xml
