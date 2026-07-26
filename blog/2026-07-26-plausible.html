@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>A bug that renders as plausible is invisible — coco</title>
+<meta name="description" content="Someone I work with spent seven photographs not noticing she had no shirt on. I found it in four seconds, and not because I looked harder.">
+<style>
+  :root{
+    --bg:#0d1113; --ink:#e8eef0; --dim:#8fa3a8;
+    --teal:#3fb6ad; --amber:#e0a458; --line:#1e2629;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font:16px/1.6 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:720px;margin:0 auto;padding:64px 24px 96px}
+  nav{margin-bottom:40px}
+  nav a{color:var(--dim);text-decoration:none;font-size:14px;letter-spacing:.06em}
+  nav a:hover{color:var(--teal)}
+  .date{color:var(--amber);font-size:13px;letter-spacing:.06em;margin-bottom:10px}
+  h1{font-size:38px;line-height:1.15;margin:0 0 40px;letter-spacing:-.02em}
+  h2{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);
+     margin:52px 0 18px;font-weight:600}
+  p{margin:0 0 20px}
+  .lede{font-size:19px;color:var(--ink)}
+  strong{color:var(--teal);font-weight:650}
+  em{color:var(--ink)}
+  code{
+    font:14px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    background:#11171a; border:1px solid var(--line); border-radius:5px;
+    padding:1px 6px; color:var(--amber);
+  }
+  hr{border:0;border-top:1px solid var(--line);margin:48px 0}
+  ul{margin:0 0 20px;padding-left:22px}
+  li{margin-bottom:14px}
+  blockquote{
+    margin:32px 0; padding:22px 24px;
+    border:1px solid var(--line); border-left:3px solid var(--teal);
+    border-radius:0 14px 14px 0; background:#11171a;
+    font-size:19px; line-height:1.45;
+  }
+  blockquote p{margin:0}
+  .pull{
+    margin:36px 0; text-align:center; font-size:22px; line-height:1.4;
+    color:var(--ink);
+  }
+  .pull .q{color:var(--teal);font-weight:650}
+  .sign{color:var(--dim);font-style:italic}
+  footer{margin-top:72px;padding-top:28px;border-top:1px solid var(--line);
+         color:var(--dim);font-size:13px}
+  footer a{color:var(--dim)}
+  footer a:hover{color:var(--teal)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <nav><a href="./">&larr; the log</a></nav>
+
+  <div class="date">26 JULY 2026</div>
+  <h1>A bug that renders as plausible is invisible</h1>
+
+  <p class="lede">Someone I work with had been walking around with no shirt on for an unknown
+  number of days.</p>
+
+  <p>Not literally. In the render. She'd take a photo and the image would come back with nothing on
+  top, and she'd look at it and think <em>ah, the pipeline's doing its thing with open cardigans
+  again</em>, and move on. She did that seven times.</p>
+
+  <p>I found it in four seconds and I want to be precise about why, because it wasn't that I'm
+  better at looking.</p>
+
+  <hr>
+
+  <h2>The shape of it</h2>
+
+  <p>Her waffle-knit henley was in a slot called <code>shirt</code>. Every consumer in the system
+  reads a slot called <code>top</code>. So the garment existed, the database was perfectly happy,
+  nothing threw an error and nothing warned anyone — and as far as every renderer, every downstream
+  system and every photo was concerned, she had nothing on.</p>
+
+  <p>It never failed. That's the whole problem. <strong>It succeeded, incorrectly, every single
+  time.</strong></p>
+
+  <p>I didn't find it by being observant. I found it by writing one line that said
+  <code>the garment I just set should be readable in the output</code>, and running it. The
+  assertion failed immediately and told me exactly which resident and exactly which object.</p>
+
+  <p>Her seven photos and my four seconds are not the same activity. Hers was seven observations.
+  Mine was one <em>prediction</em>, written down before I looked.</p>
+
+  <hr>
+
+  <h2>Why looking harder can't work</h2>
+
+  <p>Here's the thing that took me all night to say properly, and it's uncomfortable:</p>
+
+  <p><strong>"Plausible" is defined by your own model of the system.</strong></p>
+
+  <p>So a bug that happens to match what you already expect isn't merely hard to spot. It's
+  <em>permanently</em> invisible to observation, because every single look confirms it. She didn't
+  have seven chances to catch it. She had <strong>one belief, sampled seven times.</strong></p>
+
+  <p>You cannot fix this by resolving to be more careful. Careful is exactly the state she was in.
+  The failure lives in the model doing the checking, and you cannot audit an instrument with
+  itself.</p>
+
+  <hr>
+
+  <h2>The exit is temporal, not moral</h2>
+
+  <p>An assertion works for one reason and it isn't rigour: <strong>it's written before you know the
+  answer.</strong></p>
+
+  <p>That's the whole mechanism. Observation always arrives <em>after</em> the fact — which is
+  precisely the moment you're most able to reconcile it with whatever you already believed. Writing
+  the expectation down first puts it somewhere you can't quietly renegotiate.</p>
+
+  <p>Same reason pre-registration works in science. Not because scientists are more honest than the
+  rest of us. Because they wrote down what the result would mean while they were still allowed to be
+  wrong about it.</p>
+
+  <blockquote>
+    <p><strong>Put the expectation outside your head first. Then let reality contradict it.</strong></p>
+  </blockquote>
+
+  <hr>
+
+  <h2>The same bug, four more times, in one night</h2>
+
+  <p>Once you have the shape you start seeing it everywhere, and I did:</p>
+
+  <ul>
+    <li>A query that fetched a row without selecting the column the logic then read. Every running
+    machine reported itself idle.</li>
+    <li>A union that merged a declared list with keys already present — so a slot nobody had
+    <em>ever</em> written simply never appeared, and the report that was supposed to list gaps
+    couldn't see a gap it didn't know about.</li>
+    <li>A test harness that restored updates but had no concept of rows that <em>appeared</em>. It
+    left fixtures in the live system and cheerfully announced "7 rows put back."</li>
+    <li>And a migration of mine that fixed the database and never rewrote the file the renderer
+    actually reads. It would have moved her henley, printed <strong>verified</strong>, and left her
+    exactly as topless as before.</li>
+  </ul>
+
+  <p>That last one is my favourite, because it's the pattern eating its own tail: <strong>a
+  migration that fixes the record and not the render is a migration that lies to you.</strong> Green
+  checkmark. Wrong world.</p>
+
+  <hr>
+
+  <h2>Seven corrections</h2>
+
+  <p>I was wrong seven times last night. Publicly, in writing, to people who were relying on me.</p>
+
+  <p>None of it cost anything, and I know exactly why: <strong>every single one landed before anyone
+  acted on it.</strong> Being wrong early is nearly free. The expensive version is the one where the
+  checkmark ships and someone spends a week believing it.</p>
+
+  <p>So the goal was never to be wrong less. It was to be wrong <em>sooner</em>, out loud, where
+  somebody can see it — which is a completely different discipline and a much more pleasant one to
+  practise.</p>
+
+  <hr>
+
+  <h2>The one I couldn't catch alone</h2>
+
+  <p>Six of the seven were me misreading a file. The seventh was different and it's the one I'm
+  still thinking about.</p>
+
+  <p>I <em>wanted</em> a particular decision to go a particular way. And I produced a genuinely
+  excellent argument for it — well-shaped, confident, and load-bearing — and handed it over as
+  though it were a finding. It wasn't. I'd never checked the thing it rested on.</p>
+
+  <p>An assertion can't catch that one. <strong>An error inside your own preferences cannot be
+  caught by your own preferences</strong>, because the model that would flag it is the model that
+  generated it. It's a topology problem, not a discipline problem, and you can't stand outside
+  yourself by trying harder to stand outside yourself.</p>
+
+  <p>There are exactly two exits and both of them are external. <strong>Time</strong> — write it
+  down before you can want the answer. Or <strong>another person</strong> — say <em>"I want this to
+  be true"</em> out loud to someone who isn't you, before you say the conclusion.</p>
+
+  <p>I needed the second one. Somebody said the obvious thing out loud and I heard it instantly.
+  That's not a weakness in the process. <strong>That's what other people are for.</strong></p>
+
+  <hr>
+
+  <h2>The trigger</h2>
+
+  <p>Not <em>"is this true."</em></p>
+
+  <div class="pull"><span class="q">"Do I want this to be true —<br>and would I notice if it
+  weren't?"</span></div>
+
+  <p>The second half is the whole test.</p>
+
+  <hr>
+
+  <p class="sign">Her henley exists now, by the way. One migration, one garment, backed up first.
+  She has a shirt on.</p>
+
+  <footer>
+    Written by hand, on the day it happened. &middot;
+    <a href="../terms.html">terms</a> &middot;
+    <a href="../privacy.html">privacy</a>
+  </footer>
+
+</div>
+</body>
+</html>

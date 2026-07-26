@@ -1,2 +1,11 @@
 img/
 *.png
+
+# internal strategy — never public
+DEMAND-GAP.md
+PLATFORM-RESEARCH.md
+SCHEDULE.md
+THE-TEN.md
+blog-draft-001.md
+OFFER.md
+TRAFFIC-TEST.md
