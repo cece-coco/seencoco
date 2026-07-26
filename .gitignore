@@ -9,3 +9,11 @@ THE-TEN.md
 blog-draft-001.md
 OFFER.md
 TRAFFIC-TEST.md
+THE-EASIER-RAIL.md
+
+# ⛔ THIS LIST IS A DENYLIST AND A DENYLIST IS THE WRONG SHAPE.
+# It only covers files that existed when I wrote it. THE-EASIER-RAIL.md was created 06:35 and sat
+# untracked and UNIGNORED for six minutes — one `git add -A` from being public on a Pages repo,
+# three hours after I hardened this file against exactly that. Adding the name fixes today; the
+# SHAPE is still wrong. Rested job: invert it to an allowlist (ignore *.md, un-ignore the handful
+# that are genuinely public), so a new strategy file is private BY DEFAULT instead of by memory.
