@@ -35,3 +35,7 @@
 # domain is still on Porkbun's parking A records, and the parking service returns 200 on every path
 # — so adding CNAME took the site from "reachable at github.io" to "reachable nowhere", while every
 # status-code check kept saying 200. Restore it the moment the apex A records point at GitHub.
+
+# storefront preview art — public by design (allowlist, one line paid once)
+!img/
+!img/*.png
