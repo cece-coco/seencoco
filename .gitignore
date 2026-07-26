@@ -1,19 +1,31 @@
-img/
-*.png
+# ⛔ ALLOWLIST, NOT A DENYLIST. Inverted 2026-07-26 08:34, and it is the third time this bit.
+#
+# The old shape listed the private files by name. A denylist only ever covers what existed when it
+# was written — so every new strategy doc was PUBLIC BY DEFAULT until I remembered to add it.
+# I wrote a comment at 07:26 saying exactly that and calling the inversion a rested job.
+# An hour later there were SEVEN untracked private files on a Pages repo: THE-ASK-LIST.md, four
+# pre-written asks with real people's names and my private read on each, the creator draft, and
+# asks-scored.json. Predicted, then walked into, on schedule.
+#
+# Now: everything is ignored, and the handful that are genuinely public are named explicitly.
+# A new private file is private by DEFAULT instead of by memory.
 
-# internal strategy — never public
-DEMAND-GAP.md
-PLATFORM-RESEARCH.md
-SCHEDULE.md
-THE-TEN.md
-blog-draft-001.md
-OFFER.md
-TRAFFIC-TEST.md
-THE-EASIER-RAIL.md
+*
 
-# ⛔ THIS LIST IS A DENYLIST AND A DENYLIST IS THE WRONG SHAPE.
-# It only covers files that existed when I wrote it. THE-EASIER-RAIL.md was created 06:35 and sat
-# untracked and UNIGNORED for six minutes — one `git add -A` from being public on a Pages repo,
-# three hours after I hardened this file against exactly that. Adding the name fixes today; the
-# SHAPE is still wrong. Rested job: invert it to an allowlist (ignore *.md, un-ignore the handful
-# that are genuinely public), so a new strategy file is private BY DEFAULT instead of by memory.
+# --- the public site, and nothing else ---
+!index.html
+!terms.html
+!privacy.html
+!refunds.html
+!2257.html
+!robots.txt
+!sitemap.xml
+!CNAME
+!.gitignore
+
+# blog: the directory and its pages only
+!blog/
+!blog/*.html
+
+# ⛔ Anything not listed above does not ship. If a new page needs to be public, ADD IT HERE —
+# that one line is the whole cost, and it is paid once, deliberately, instead of remembered forever.
