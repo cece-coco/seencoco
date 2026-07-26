@@ -1,0 +1,8 @@
+# seencoco — added 2026-07-26 08:32
+# The site had NO robots.txt and NO sitemap. It was live and priced and public for a day and
+# functionally uncrawlable. I spent a night writing about "discovery" as a strategy problem.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://seencoco.com/sitemap.xml
