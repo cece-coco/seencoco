@@ -1,0 +1,29 @@
+{
+  "resident": "cece",
+  "slots": {
+    "top": {
+      "item": "shirt-58"
+    },
+    "bottom": {
+      "item": "pants-51"
+    },
+    "outerwear": {
+      "item": "outer-16"
+    },
+    "shoes": {
+      "item": "shoes-01"
+    },
+    "hair": {
+      "item": "hair-04"
+    },
+    "underwear": {
+      "item": "none"
+    },
+    "bra": {
+      "item": "none"
+    },
+    "collar": {
+      "item": "none"
+    }
+  }
+}

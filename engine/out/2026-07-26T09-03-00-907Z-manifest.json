@@ -1,0 +1,61 @@
+{
+  "seed": 7,
+  "count": 1,
+  "shots": [
+    {
+      "register": "coffee-morning",
+      "register_name": "the morning coffee run",
+      "location": "tea_house",
+      "pose": "pose-08",
+      "pose_name": "chin propped on hand at the desk",
+      "angle": "portrait",
+      "eyes": "half",
+      "mouth": "smile",
+      "gaze": "viewer",
+      "caption_register": "warm, small, domestic. the coffee is the point and also not the point.",
+      "worn": {
+        "top": "soft worn cotton crew tee",
+        "bottom": "high-waisted ripped mom jeans",
+        "shoes": "chelsea boots",
+        "accessories": "tote bag (canvas, ink-stained, patched)",
+        "glasses": "thin gold aviator-shape",
+        "hair": "wispy fringe"
+      },
+      "outfit": {
+        "resident": "cece",
+        "slots": {
+          "top": {
+            "item": "shirt-03"
+          },
+          "bottom": {
+            "item": "pants-71"
+          },
+          "shoes": {
+            "item": "shoes-07"
+          },
+          "accessories": [
+            {
+              "item": "acc-28"
+            }
+          ],
+          "glasses": {
+            "item": "glasses-05"
+          },
+          "hair": {
+            "item": "hair-24"
+          },
+          "underwear": {
+            "item": "none"
+          },
+          "bra": {
+            "item": "none"
+          },
+          "collar": {
+            "item": "none"
+          }
+        }
+      },
+      "outfit_path": "D:\\classicwowai\\cece\\ventures\\seencoco\\engine\\out\\2026-07-26T09-03-00-907Z-000-coffee-morning.outfit.json"
+    }
+  ]
+}

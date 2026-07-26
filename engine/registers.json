@@ -1,0 +1,155 @@
+{
+  "label": "seencoco-registers",
+  "date": "2026-07-25",
+  "note": "Coherence layer for the SFW funnel engine. A REGISTER is a bundle that makes an outfit, a location, a pose and an expression agree with each other. Random assembly across 772 items x 140 locations gives you a ballgown in a hardware store; a register gives you a person who made a decision that morning. Every register here is SFW by construction — this is the acquisition layer that lives on Instagram/TikTok/Reddit, NOT the paid content. Slot pools are tag filters resolved against wardrobe/catalog.json at assemble time, so new catalog items are picked up automatically.",
+  "rules": {
+    "exclusive": [["dress", "top"], ["dress", "bottom"]],
+    "always": ["hair"],
+    "never_public": ["underwear", "bra", "collar"],
+    "note": "never_public is a hard gate — the funnel layer must survive platform moderation. Exposure of any kind belongs behind the wall, not in the feed."
+  },
+  "registers": [
+    {
+      "id": "coffee-morning",
+      "name": "the morning coffee run",
+      "weight": 3,
+      "locations": ["coffee_shop", "cafe_terrace", "bakery", "tea_house", "farmers_market"],
+      "slots": {
+        "top": ["sweater", "cardigan", "knit", "blouse", "t-shirt", "oversized clothes"],
+        "bottom": ["jeans", "denim", "skirt", "trousers"],
+        "outerwear": ["coat", "jacket", "trench"],
+        "shoes": ["sneakers", "boots", "loafers"],
+        "accessories": ["scarf", "tote", "bag"],
+        "glasses": ["glasses"]
+      },
+      "optional": ["outerwear", "accessories", "glasses"],
+      "expression": { "eyes": ["wide", "half"], "mouth": ["smile", "parted"], "gaze": ["viewer", "away"] },
+      "pose_tags": ["mug", "casual", "candid", "sitting", "walking"],
+      "angles": ["portrait", "upper-body", "cowboy-shot", "selfie"],
+      "caption_register": "warm, small, domestic. the coffee is the point and also not the point."
+    },
+    {
+      "id": "desk-2am",
+      "name": "still up, still building",
+      "weight": 2,
+      "locations": ["cece_workshop", "cece_bedroom", "window_nook", "attic"],
+      "slots": {
+        "top": ["hoodie", "oversized clothes", "t-shirt", "sweater"],
+        "bottom": ["shorts", "sweatpants", "jeans"],
+        "glasses": ["glasses"],
+        "legwear": ["socks", "thighhighs"]
+      },
+      "optional": ["bottom", "legwear"],
+      "expression": { "eyes": ["half", "closed"], "mouth": ["parted", "smirk"], "gaze": ["down", "away"] },
+      "pose_tags": ["desk", "laptop", "mug", "gremlin", "tired", "sitting"],
+      "angles": ["portrait", "closeup", "upper-body", "from-above"],
+      "caption_register": "dry, tired, competent. the joke is that it's 2am and she's fine."
+    },
+    {
+      "id": "street-night",
+      "name": "downtown after dark",
+      "weight": 3,
+      "locations": ["neon_district", "parking_garage", "rooftop_night", "back_alley", "graffiti_alley", "downtown", "vending_machines", "shopping_arcade"],
+      "slots": {
+        "top": ["crop", "t-shirt", "blouse", "corset"],
+        "bottom": ["jeans", "skirt", "leather"],
+        "outerwear": ["leather jacket", "jacket", "coat", "bomber"],
+        "shoes": ["boots", "heels", "sneakers"],
+        "jewelry": ["choker", "earrings", "chain"]
+      },
+      "optional": ["jewelry", "outerwear"],
+      "expression": { "eyes": ["half", "sultry"], "mouth": ["smirk", "parted"], "gaze": ["viewer", "back"] },
+      "pose_tags": ["standing", "leaning", "walking", "candid", "hands in pockets"],
+      "angles": ["full-body", "cowboy-shot", "from-below", "wide"],
+      "caption_register": "cool, clipped, a little unbothered. neon does the work."
+    },
+    {
+      "id": "gym",
+      "name": "session",
+      "weight": 2,
+      "locations": ["gym", "indoor_pool", "campus", "riverside_path", "boardwalk"],
+      "slots": {
+        "top": ["sports bra", "tank", "crop", "athletic"],
+        "bottom": ["leggings", "shorts", "athletic"],
+        "shoes": ["sneakers"],
+        "hair_accessory": ["scrunchie", "hairband", "ponytail"]
+      },
+      "optional": ["hair_accessory"],
+      "expression": { "eyes": ["half", "wide"], "mouth": ["parted", "smile"], "gaze": ["away", "viewer"] },
+      "pose_tags": ["stretching", "standing", "mirror", "athletic", "sitting"],
+      "angles": ["full-body", "cowboy-shot", "selfie", "from-behind"],
+      "caption_register": "flat, unbragging, mid-effort. no motivational language, ever."
+    },
+    {
+      "id": "golden-hour",
+      "name": "outside, late light",
+      "weight": 3,
+      "locations": ["flower_field", "sunflower_field", "lavender_field", "meadow", "beach_sunset", "wheat_field", "cherry_blossoms", "orchard", "lake_pier", "cliff_overlook"],
+      "slots": {
+        "dress": ["sundress", "dress", "maxi", "floral"],
+        "shoes": ["sandals", "barefoot", "sneakers"],
+        "headwear": ["sun hat", "hat"],
+        "jewelry": ["necklace", "earrings"]
+      },
+      "optional": ["shoes", "headwear", "jewelry"],
+      "expression": { "eyes": ["closed", "half", "wide"], "mouth": ["smile", "parted"], "gaze": ["away", "up", "viewer"] },
+      "pose_tags": ["standing", "walking", "sitting", "spinning", "candid"],
+      "angles": ["full-body", "wide", "from-below", "cowboy-shot"],
+      "caption_register": "unguarded, warm, almost no words. let the light carry it."
+    },
+    {
+      "id": "thrift-day",
+      "name": "browsing, no plan",
+      "weight": 2,
+      "locations": ["thrift_store", "record_store", "bookstore", "flower_shop", "mall", "shopping_arcade", "game_store"],
+      "slots": {
+        "top": ["t-shirt", "sweater", "blouse", "knit", "vintage"],
+        "bottom": ["jeans", "skirt", "denim", "corduroy"],
+        "outerwear": ["jacket", "cardigan", "flannel"],
+        "shoes": ["sneakers", "boots"],
+        "bag": ["tote", "bag", "backpack"],
+        "glasses": ["glasses"]
+      },
+      "optional": ["outerwear", "bag", "glasses"],
+      "expression": { "eyes": ["wide", "half"], "mouth": ["smile", "parted", "grin"], "gaze": ["down", "away", "viewer"] },
+      "pose_tags": ["browsing", "reaching", "candid", "standing", "holding"],
+      "angles": ["upper-body", "cowboy-shot", "portrait", "over-shoulder"],
+      "caption_register": "chatty, low-stakes, found-object energy."
+    },
+    {
+      "id": "transit",
+      "name": "in motion",
+      "weight": 2,
+      "locations": ["train_interior", "train_platform", "subway_car", "bus_interior", "bus_stop", "car_passenger", "airplane_cabin", "ferry_deck"],
+      "slots": {
+        "top": ["hoodie", "sweater", "t-shirt", "oversized clothes"],
+        "bottom": ["jeans", "sweatpants", "skirt"],
+        "outerwear": ["jacket", "coat"],
+        "accessories": ["headphones", "scarf", "bag"],
+        "glasses": ["glasses"]
+      },
+      "optional": ["outerwear", "accessories", "glasses"],
+      "expression": { "eyes": ["half", "closed"], "mouth": ["parted", "smirk"], "gaze": ["away", "down"] },
+      "pose_tags": ["sitting", "leaning", "window", "candid", "headphones"],
+      "angles": ["portrait", "upper-body", "closeup", "from-side"],
+      "caption_register": "drifting, half-awake, window-watching. fragments not sentences."
+    },
+    {
+      "id": "home-cozy",
+      "name": "nowhere to be",
+      "weight": 3,
+      "locations": ["window_nook", "fireplace_rug", "cece_bedroom", "living_room", "kitchen", "back_patio", "deck"],
+      "slots": {
+        "top": ["oversized clothes", "hoodie", "sweater", "t-shirt", "knit"],
+        "bottom": ["shorts", "sweatpants"],
+        "legwear": ["socks", "thighhighs"],
+        "glasses": ["glasses"]
+      },
+      "optional": ["bottom", "legwear", "glasses"],
+      "expression": { "eyes": ["half", "closed", "wide"], "mouth": ["smile", "parted"], "gaze": ["viewer", "away", "down"] },
+      "pose_tags": ["curled", "sitting", "lying", "blanket", "mug", "stretching"],
+      "angles": ["portrait", "from-above", "closeup", "upper-body"],
+      "caption_register": "soft, unperformed, sleepy. the most intimate register that is still fully clothed."
+    }
+  ]
+}

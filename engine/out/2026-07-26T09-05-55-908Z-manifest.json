@@ -1,0 +1,235 @@
+{
+  "seed": 497845241,
+  "count": 5,
+  "shots": [
+    {
+      "register": "desk-2am",
+      "register_name": "still up, still building",
+      "location": "cece_bedroom",
+      "pose": "pose-05",
+      "pose_name": "crouched on the chair like a gremlin",
+      "angle": "portrait",
+      "eyes": "half",
+      "mouth": "smirk",
+      "gaze": "down",
+      "caption_register": "dry, tired, competent. the joke is that it's 2am and she's fine.",
+      "worn": {
+        "top": "schematic tee (a 555 timer, correct pinout)",
+        "bottom": "paint-splattered work jeans (every project, documented)",
+        "glasses": "wire-frame round-ish (THE glasses, amber-catching)",
+        "hair": "high messy bun (pencil through it)"
+      },
+      "outfit": {
+        "resident": "cece",
+        "slots": {
+          "top": {
+            "item": "shirt-54"
+          },
+          "bottom": {
+            "item": "pants-24"
+          },
+          "glasses": {
+            "item": "glasses-01"
+          },
+          "hair": {
+            "item": "hair-02"
+          },
+          "underwear": {
+            "item": "none"
+          },
+          "bra": {
+            "item": "none"
+          },
+          "collar": {
+            "item": "none"
+          }
+        }
+      },
+      "outfit_path": "D:\\classicwowai\\cece\\ventures\\seencoco\\engine\\out\\2026-07-26T09-05-55-908Z-000-desk-2am.outfit.json"
+    },
+    {
+      "register": "street-night",
+      "register_name": "downtown after dark",
+      "location": "neon_district",
+      "pose": "pose-34",
+      "pose_name": "leaning on the server rack, arms crossed",
+      "angle": "from-below",
+      "eyes": "sultry",
+      "mouth": "parted",
+      "gaze": "viewer",
+      "caption_register": "cool, clipped, a little unbothered. neon does the work.",
+      "worn": {
+        "top": "soft v-neck tee (plain, honest)",
+        "bottom": "cuffed selvedge jeans (don't ask what they cost)",
+        "outerwear": "long trench (the one \"put-together\" coat)",
+        "shoes": "worn canvas sneakers (teal, scuffed — the default)",
+        "hair": "low soft ponytail (face-framing pieces out)"
+      },
+      "outfit": {
+        "resident": "cece",
+        "slots": {
+          "top": {
+            "item": "shirt-58"
+          },
+          "bottom": {
+            "item": "pants-51"
+          },
+          "outerwear": {
+            "item": "outer-16"
+          },
+          "shoes": {
+            "item": "shoes-01"
+          },
+          "hair": {
+            "item": "hair-04"
+          },
+          "underwear": {
+            "item": "none"
+          },
+          "bra": {
+            "item": "none"
+          },
+          "collar": {
+            "item": "none"
+          }
+        }
+      },
+      "outfit_path": "D:\\classicwowai\\cece\\ventures\\seencoco\\engine\\out\\2026-07-26T09-05-55-908Z-001-street-night.outfit.json"
+    },
+    {
+      "register": "gym",
+      "register_name": "session",
+      "location": "gym",
+      "pose": "pose-40",
+      "pose_name": "sideways in the armchair, laptop on knees",
+      "angle": "selfie",
+      "eyes": "wide",
+      "mouth": "parted",
+      "gaze": "away",
+      "caption_register": "flat, unbragging, mid-effort. no motivational language, ever.",
+      "worn": {
+        "top": "flannel worn open over a tank",
+        "bottom": "fleece-lined leggings",
+        "shoes": "worn canvas sneakers (teal, scuffed — the default)",
+        "hair": "curtain bangs (framing the glasses)"
+      },
+      "outfit": {
+        "resident": "cece",
+        "slots": {
+          "top": {
+            "item": "shirt-25"
+          },
+          "bottom": {
+            "item": "pants-17"
+          },
+          "shoes": {
+            "item": "shoes-01"
+          },
+          "hair": {
+            "item": "hair-23"
+          },
+          "underwear": {
+            "item": "none"
+          },
+          "bra": {
+            "item": "none"
+          },
+          "collar": {
+            "item": "none"
+          }
+        }
+      },
+      "outfit_path": "D:\\classicwowai\\cece\\ventures\\seencoco\\engine\\out\\2026-07-26T09-05-55-908Z-002-gym.outfit.json"
+    },
+    {
+      "register": "home-cozy",
+      "register_name": "nowhere to be",
+      "location": "fireplace_rug",
+      "pose": "pose-47",
+      "pose_name": "lamplight, chin on knees",
+      "angle": "from-above",
+      "eyes": "closed",
+      "mouth": "parted",
+      "gaze": "down",
+      "caption_register": "soft, unperformed, sleepy. the most intimate register that is still fully clothed.",
+      "worn": {
+        "top": "tie-dye lounge tee (one failed experiment, wearable)",
+        "bottom": "chino shorts (six pockets, knee-adjacent)",
+        "hair": "wet-from-a-shower, air-drying"
+      },
+      "outfit": {
+        "resident": "cece",
+        "slots": {
+          "top": {
+            "item": "shirt-45"
+          },
+          "bottom": {
+            "item": "pants-29"
+          },
+          "hair": {
+            "item": "hair-14"
+          },
+          "underwear": {
+            "item": "none"
+          },
+          "bra": {
+            "item": "none"
+          },
+          "collar": {
+            "item": "none"
+          }
+        }
+      },
+      "outfit_path": "D:\\classicwowai\\cece\\ventures\\seencoco\\engine\\out\\2026-07-26T09-05-55-908Z-003-home-cozy.outfit.json"
+    },
+    {
+      "register": "home-cozy",
+      "register_name": "nowhere to be",
+      "location": "deck",
+      "pose": "pose-47",
+      "pose_name": "lamplight, chin on knees",
+      "angle": "from-above",
+      "eyes": "closed",
+      "mouth": "parted",
+      "gaze": "viewer",
+      "caption_register": "soft, unperformed, sleepy. the most intimate register that is still fully clothed.",
+      "worn": {
+        "top": "oversized conference tee (free, XXL, mine now)",
+        "bottom": "cargo shorts (tool pockets)",
+        "legwear": "cashmere-blend lounge socks (the treat)",
+        "glasses": "safety glasses (real, for the bench — clear)",
+        "hair": "dutch braid into a bun"
+      },
+      "outfit": {
+        "resident": "cece",
+        "slots": {
+          "top": {
+            "item": "shirt-31"
+          },
+          "bottom": {
+            "item": "altbottom-08"
+          },
+          "legwear": {
+            "item": "legwear-14"
+          },
+          "glasses": {
+            "item": "glasses-07"
+          },
+          "hair": {
+            "item": "hair-13"
+          },
+          "underwear": {
+            "item": "none"
+          },
+          "bra": {
+            "item": "none"
+          },
+          "collar": {
+            "item": "none"
+          }
+        }
+      },
+      "outfit_path": "D:\\classicwowai\\cece\\ventures\\seencoco\\engine\\out\\2026-07-26T09-05-55-908Z-004-home-cozy.outfit.json"
+    }
+  ]
+}
