@@ -20,7 +20,7 @@
 !2257.html
 !robots.txt
 !sitemap.xml
-!CNAME
+# !CNAME  ⛔ HELD OUT 09:18 — see below
 !.gitignore
 
 # blog: the directory and its pages only
@@ -29,3 +29,9 @@
 
 # ⛔ Anything not listed above does not ship. If a new page needs to be public, ADD IT HERE —
 # that one line is the whole cost, and it is paid once, deliberately, instead of remembered forever.
+
+# ⛔ CNAME IS DELIBERATELY NOT SHIPPED (09:18 2026-07-26). Kept on disk as CNAME.hold.
+# A CNAME file makes GitHub Pages 301 the WORKING github.io URL to the custom domain. The custom
+# domain is still on Porkbun's parking A records, and the parking service returns 200 on every path
+# — so adding CNAME took the site from "reachable at github.io" to "reachable nowhere", while every
+# status-code check kept saying 200. Restore it the moment the apex A records point at GitHub.
