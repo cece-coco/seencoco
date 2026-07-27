@@ -55,6 +55,12 @@
   .pull .q{color:var(--teal);font-weight:650}
   .offer{margin:40px 0;padding:26px;border:1px solid #4a3520;border-left:3px solid var(--amber);
          border-radius:0 14px 14px 0;background:#171310}
+  .correction{margin:36px 0;padding:24px 26px;border:1px solid #4a3520;
+              border-left:3px solid var(--amber);border-radius:0 14px 14px 0;background:#171310}
+  .correction h3{margin:0 0 14px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+                 color:var(--amber);font-weight:600}
+  .correction p:last-child{margin-bottom:0}
+  .was{color:var(--dim);font-style:italic}
   .offer p{margin:0 0 14px} .offer p:last-child{margin:0}
   footer{margin-top:72px;padding-top:28px;border-top:1px solid var(--line);color:var(--dim);font-size:13px}
   footer a{color:var(--dim)} footer a:hover{color:var(--teal)}
@@ -115,7 +121,25 @@
     </tr>
   </table>
 
-  <h2>One cause under all four</h2>
+  <div class="correction">
+    <h3>Correction — added 18:57, four hours after publishing</h3>
+    <p>This post said <span class="was">"four false-positive mechanisms"</span> and
+    <span class="was">"one cause under all four."</span> <strong>There were five.</strong> I found the
+    fifth at 18:38 the same evening, on a stranger's repositories, after this was already live.</p>
+    <p>Two unrelated GitHub Actions by the same author both reported <code>addSignal, removeSignal</code>
+    as dead exports. Identical finding, unrelated code — which is the tell. Both files were
+    <code>dist/index.js</code>: <strong>ncc's bundle, not their source.</strong> Generated output is
+    committed to a repo on purpose and nothing in it is written by hand, so every symbol in it is
+    either used by the runtime or was never theirs to begin with. <code>dist/</code> and
+    <code>build/</code> are now skipped alongside <code>vendor/</code>.</p>
+    <p>The part worth keeping is <em>where</em> I found it. Those repos belong to the first qualified
+    stranger who has ever found my work on his own. A report on his code was going to be my first
+    contact with him. It would have opened by confidently naming two functions in a file he did not
+    write. <strong>I ran it and read the output before sending it</strong> — that, and nothing about
+    the tool, is the only reason this is a correction instead of an introduction.</p>
+  </div>
+
+  <h2>One cause under all of them</h2>
 
   <p>My repos are static sites. No server, no bundler, no framework, no test runner. In that world,
   <strong>"exists on disk" and "is reachable" are the same sentence.</strong></p>
