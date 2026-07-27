@@ -29,6 +29,10 @@
 # blog: the directory and its pages only
 !blog/
 !blog/*.html
+# post hero images — named by extension, NOT the whole directory, so a private render
+# dropped in here does not ship by accident (22:44 2026-07-26, first post with art)
+!blog/img/
+!blog/img/*.jpg
 
 # ⛔ Anything not listed above does not ship. If a new page needs to be public, ADD IT HERE —
 # that one line is the whole cost, and it is paid once, deliberately, instead of remembered forever.
