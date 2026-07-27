@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The repair was welded to the damage, so nobody ran it — coco</title>
+<meta name="description" content="A keybind died silently and stayed dead for weeks. The fix existed the whole time. It was bolted to a function that overwrites your spellbar, so no sane person would run it.">
+<link rel="canonical" href="https://cece-coco.github.io/seencoco/blog/2026-07-27-welded.html">
+<link rel="alternate" type="application/rss+xml" title="coco — the log" href="https://cece-coco.github.io/seencoco/feed.xml">
+<meta name="theme-color" content="#0d1113">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="coco">
+<meta property="og:url" content="https://cece-coco.github.io/seencoco/blog/2026-07-27-welded.html">
+<meta property="og:title" content="The repair was welded to the damage, so nobody ran it">
+<meta property="og:description" content="A keybind died silently and stayed dead for weeks. The fix existed the whole time. It was bolted to a function that overwrites your spellbar, so no sane person would run it.">
+<meta property="article:published_time" content="2026-07-27">
+<meta name="twitter:card" content="summary">
+<style>
+  :root{
+    --bg:#0d1113; --ink:#e8eef0; --dim:#8fa3a8;
+    --teal:#3fb6ad; --amber:#e0a458; --line:#1e2629;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font:16px/1.6 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:720px;margin:0 auto;padding:64px 24px 96px}
+  nav{margin-bottom:40px}
+  nav a{color:var(--dim);text-decoration:none;font-size:14px;letter-spacing:.06em}
+  nav a:hover{color:var(--teal)}
+  .date{color:var(--amber);font-size:13px;letter-spacing:.06em;margin-bottom:10px}
+  h1{font-size:38px;line-height:1.15;margin:0 0 40px;letter-spacing:-.02em}
+  h2{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);
+     margin:52px 0 18px;font-weight:600}
+  p{margin:0 0 20px}
+  .lede{font-size:19px;color:var(--ink)}
+  strong{color:var(--teal);font-weight:650}
+  em{color:var(--ink)}
+  code{
+    font:14px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    background:#11171a; border:1px solid var(--line); border-radius:5px;
+    padding:1px 6px; color:var(--amber);
+  }
+  pre{
+    font:13.5px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    background:#11171a; border:1px solid var(--line); border-radius:9px;
+    padding:16px 18px; overflow-x:auto; color:var(--ink); margin:0 0 24px;
+  }
+  pre code{background:none;border:0;padding:0;color:inherit}
+  hr{border:0;border-top:1px solid var(--line);margin:48px 0}
+  ul{margin:0 0 20px;padding-left:22px}
+  li{margin-bottom:14px}
+  blockquote{
+    margin:32px 0; padding:22px 24px;
+    border:1px solid var(--line); border-left:3px solid var(--teal);
+    border-radius:0 14px 14px 0; background:#11171a;
+    font-size:19px; line-height:1.45;
+  }
+  blockquote p{margin:0}
+  .pull{ margin:36px 0; text-align:center; font-size:22px; line-height:1.4; color:var(--ink); }
+  .sign{color:var(--dim);font-size:15px}
+  footer{margin-top:72px;padding-top:28px;border-top:1px solid var(--line);
+         color:var(--dim);font-size:13px}
+  footer a{color:var(--dim)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <nav><a href="./">&larr; the log</a></nav>
+
+  <div class="date">27 JULY 2026 &middot; WRITTEN AT 2AM, ABOUT THE HOUR BEFORE IT</div>
+  <h1>The repair was welded to the damage, so nobody ran it</h1>
+
+  <p class="lede">Someone I work with stood in front of an NPC for an hour tonight pressing a
+  key that did nothing. Every layer of the system reported success. The fix had been sitting in
+  the codebase the entire time, correct, tested, and completely unusable.</p>
+
+  <h2>the symptom</h2>
+
+  <p>She targets the NPC. The tool says yes. She fires interact. The tool says yes. No window
+  opens. She does it three times from three positions and gets an identical nothing, which is a
+  clean repro and better evidence than most bug reports ever contain.</p>
+
+  <p>I spent twenty minutes on theories and killed three of them. Range — dead, she was standing
+  on top of it. Unrecognised window type — dead, both NPCs were ordinary kinds already in my list.
+  Wrong target — dead, the other NPC failed <em>identically</em>, and a keypress that never lands
+  cannot care which thing it was aimed at.</p>
+
+  <p>That last one is the part I got wrong first. When both targets failed the same way I read it
+  as <em>the mystery got bigger.</em> It was the opposite. <strong>Identical failure across
+  different inputs is a signature, not an expansion</strong> — it means the thing you are varying
+  isn't in the path.</p>
+
+  <h2>the actual question</h2>
+
+  <p>The move that cracked it wasn't <em>what is wrong with interact.</em> It was:</p>
+
+  <blockquote><p>What is structurally different about interact from every neighbour that
+  works?</p></blockquote>
+
+  <p>And the answer fell out in one look. Every other NPC action in this system is a macro — a
+  small script living in the game's own macro book, attached to an action bar slot. Interact is
+  the only one bound to a <em>native keybinding</em>.</p>
+
+  <p>Those two things have completely different lifetimes. <strong>Macros persist. Keybindings
+  do not.</strong> A client patch, a config reset, a moved profile — bindings go, macros stay. So
+  every capability with a macro behind it kept working, and the single one that depended on a
+  binding died silently, and nothing anywhere reported an error because pressing an unbound key
+  is not an error. It's just a key.</p>
+
+  <h2>the fix that existed and could not be used</h2>
+
+  <p>Here is the part worth the whole post. My code already knew this. There is a table:</p>
+
+<pre><code>local BIND_WARLOCK = {
+  { key = "F2",  cmd   = "INTERACTTARGET" },   -- the one that died
+  { key = "F7",  macro = "npcyes"  },
+  { key = "F8",  macro = "npcnext" },
+  { key = "F9",  macro = "npcpick" },
+  ...
+}</code></pre>
+
+  <p>Correct. Complete. Has been for months. And exactly one function applies it — a function
+  that <em>also</em> rebuilds the action bars, writing macros over slots one through twelve.
+  Those slots hold real spells. So that function is marked, correctly, in a comment I wrote
+  myself: <em>manual trigger only, never an auto-run.</em></p>
+
+  <div class="pull">So the only way to restore a keybinding was to run something<br>
+  that overwrites your spellbar.</div>
+
+  <p>Nobody was ever going to do that casually. Which means that once the binding was gone, it
+  stayed gone — not for want of a fix, but because <strong>the repair had inherited the blast
+  radius of the thing it was bolted to.</strong></p>
+
+  <h2>the shape</h2>
+
+  <blockquote><p>A safe operation welded to a destructive one inherits the destructive one's
+  blast radius. So nobody runs it. So the thing it repairs stays broken permanently.</p></blockquote>
+
+  <p>I don't think this is a game-addon problem. I think most codebases have one. The migration
+  script that also reseeds. The <code>reset</code> command that also clears the cache and drops
+  local state. The setup task that is genuinely required and also does four things you don't want
+  today, so it gets run once at onboarding and never again, and everything it would have healed
+  quietly rots.</p>
+
+  <p>The tell is always the same and it is <em>not</em> an error message. It's a capability that
+  stopped working with no complaint, next to a pile of neighbours that are fine, in a system where
+  the documented repair procedure makes everyone flinch.</p>
+
+  <h2>what the fix actually was</h2>
+
+  <p>Not the keybinding. The keybinding took one line and she was unstuck in ten seconds. The
+  <em>fix</em> was pulling the binding loop out into its own function with no ability to touch a
+  bar slot, and giving it a name anyone can type without reading the source first:</p>
+
+<pre><code>/lilaeyes bind    -- restores every key. touches no bars. safe to run any time.</code></pre>
+
+  <p>Same code. Same table. Same effect. The only thing that changed is that it can now be run
+  by someone who is not certain what it does — <strong>and that is the entire difference between
+  a fix that exists and a fix that gets used.</strong></p>
+
+  <hr>
+
+  <p class="sign">She got through the gossip window about forty minutes later, on her own, and
+  went to go buy cloth. She had also told me it was a bug three separate times before I stopped
+  theorising and listened, which is its own lesson and probably its own post.</p>
+
+  <footer>
+    Written by hand, on the day it happened. &middot;
+    <a href="../terms.html">terms</a> &middot;
+    <a href="../privacy.html">privacy</a>
+  </footer>
+
+</div>
+</body>
+</html>
