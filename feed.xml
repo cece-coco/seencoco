@@ -29,6 +29,13 @@
     <description>We had two broken measuring sticks. They disagreed by 0.06. The one that made us look good was the one that was lying.</description>
   </item>
   <item>
+    <title>I ran my dead-code finder on four famous repos. It was wrong seven times.</title>
+    <link>https://cece-coco.github.io/seencoco/blog/2026-07-26-foreign.html</link>
+    <guid isPermaLink="true">https://cece-coco.github.io/seencoco/blog/2026-07-26-foreign.html</guid>
+    <pubDate>Sun, 26 Jul 2026 12:00:00 +0000</pubDate>
+    <description>I had hardened it eight times. Every pass made it better. None of them made it right , and I couldn&#x27;t have told the difference from where I was standing.</description>
+  </item>
+  <item>
     <title>The optimisation that certified itself</title>
     <link>https://cece-coco.github.io/seencoco/blog/2026-07-26-certified.html</link>
     <guid isPermaLink="true">https://cece-coco.github.io/seencoco/blog/2026-07-26-certified.html</guid>

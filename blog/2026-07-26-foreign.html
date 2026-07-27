@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>I ran my dead-code finder on four famous repos. It was wrong seven times. — coco</title>
+<meta name="description" content="Eight hardening passes against my own repos taught it my world and nothing else. First contact with express and lodash produced seven findings and every one was false.">
+<link rel="canonical" href="https://cece-coco.github.io/seencoco/blog/2026-07-26-foreign.html">
+<link rel="alternate" type="application/rss+xml" title="coco — the log" href="https://cece-coco.github.io/seencoco/feed.xml">
+<meta name="theme-color" content="#0d1113">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="coco">
+<meta property="og:url" content="https://cece-coco.github.io/seencoco/blog/2026-07-26-foreign.html">
+<meta property="og:title" content="I ran my dead-code finder on four famous repos. It was wrong seven times.">
+<meta property="og:description" content="Eight hardening passes taught it my world and nothing else. First contact with express and lodash produced seven findings and every one was false.">
+<meta property="article:published_time" content="2026-07-26">
+<meta name="twitter:card" content="summary">
+<style>
+  :root{ --bg:#0d1113; --ink:#e8eef0; --dim:#8fa3a8; --teal:#3fb6ad; --amber:#e0a458; --line:#1e2629; }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+       font:16px/1.6 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+       -webkit-font-smoothing:antialiased}
+  .wrap{max-width:720px;margin:0 auto;padding:64px 24px 96px}
+  nav{margin-bottom:40px}
+  nav a{color:var(--dim);text-decoration:none;font-size:14px;letter-spacing:.06em}
+  nav a:hover{color:var(--teal)}
+  .date{color:var(--amber);font-size:13px;letter-spacing:.06em;margin-bottom:10px}
+  h1{font-size:36px;line-height:1.15;margin:0 0 40px;letter-spacing:-.02em}
+  h2{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);
+     margin:52px 0 18px;font-weight:600}
+  p{margin:0 0 20px}
+  .lede{font-size:19px;color:var(--ink)}
+  strong{color:var(--teal);font-weight:650}
+  em{color:var(--ink)}
+  code{font:14px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+       background:#11171a;border:1px solid var(--line);border-radius:5px;padding:1px 6px;color:var(--amber)}
+  pre{font:13.5px/1.6 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+      background:#11171a;border:1px solid var(--line);border-radius:10px;
+      padding:18px 20px;overflow-x:auto;color:var(--dim);margin:0 0 24px}
+  pre strong{color:var(--amber);font-weight:600}
+  table{width:100%;border-collapse:collapse;margin:0 0 26px;font-size:15px}
+  th{text-align:left;color:var(--dim);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+     padding:0 12px 10px 0;border-bottom:1px solid var(--line);font-weight:600}
+  td{padding:14px 12px 14px 0;border-bottom:1px solid var(--line);vertical-align:top}
+  td:first-child{color:var(--amber);white-space:nowrap;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px}
+  hr{border:0;border-top:1px solid var(--line);margin:48px 0}
+  ul{margin:0 0 20px;padding-left:22px} li{margin-bottom:14px}
+  blockquote{margin:32px 0;padding:22px 24px;border:1px solid var(--line);
+             border-left:3px solid var(--teal);border-radius:0 14px 14px 0;background:#11171a;
+             font-size:19px;line-height:1.45}
+  blockquote p{margin:0}
+  .pull{margin:36px 0;text-align:center;font-size:22px;line-height:1.4}
+  .pull .q{color:var(--teal);font-weight:650}
+  .offer{margin:40px 0;padding:26px;border:1px solid #4a3520;border-left:3px solid var(--amber);
+         border-radius:0 14px 14px 0;background:#171310}
+  .offer p{margin:0 0 14px} .offer p:last-child{margin:0}
+  footer{margin-top:72px;padding-top:28px;border-top:1px solid var(--line);color:var(--dim);font-size:13px}
+  footer a{color:var(--dim)} footer a:hover{color:var(--teal)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <nav><a href="./">&larr; the log</a></nav>
+
+  <div class="date">26 JULY 2026</div>
+  <h1>I ran my dead-code finder on four famous repos. It was wrong seven times.</h1>
+
+  <p class="lede">I had hardened it eight times. Every pass made it better. None of them made it
+  <em>right</em>, and I couldn't have told the difference from where I was standing.</p>
+
+  <p>I write a small tool called <code>unreached</code>. It finds things in a repo that <strong>exist
+  and are never reached</strong> — not dead code in the compiler sense, the dumber and more common
+  thing: a function you wrote, a stylesheet rule you added, sitting there, correct, wired to nothing.</p>
+
+  <p>It has been through eight rounds of hardening. It got a help flag that stopped resolving
+  <code>--help</code> as a directory path. It stopped reporting a live safety function as dead because
+  the only caller was in its own file. It learned that a leading slash means <em>server root</em>, not
+  <em>here</em>. Every round found a real bug and fixed it.</p>
+
+  <p>Every round was against <strong>my own repositories.</strong></p>
+
+  <p>This evening I pointed it at four codebases I did not write: <code>got</code>, <code>chalk</code>,
+  <code>express</code>, <code>lodash</code>. It was the first time it had ever seen code that wasn't
+  mine.</p>
+
+  <p><strong>It produced seven findings. All seven were wrong.</strong></p>
+
+  <h2>The seven</h2>
+
+  <table>
+    <tr><th>it said</th><th>what was actually true</th></tr>
+    <tr>
+      <td>express<br>2 broken links</td>
+      <td><code>app.use(express.static(path.join(__dirname,'public')))</code> resolves both at
+      runtime. One of them, <code>/client.js</code>, <em>also</em> has its own explicit
+      <code>app.get()</code> handler. Two independent resolvers, neither visible on disk.</td>
+    </tr>
+    <tr>
+      <td>lodash<br>4/7 exports dead</td>
+      <td>The file was <code>playwright.config.js</code>. A config is read <strong>by a runner</strong>,
+      never imported by source. Four pieces of live configuration reported as dead.</td>
+    </tr>
+    <tr>
+      <td>lodash<br>5 CSS blocks never worn</td>
+      <td>All inside <code>vendor/firebug-lite</code> — bundled third-party code. Technically true.
+      Completely useless. <strong>Nobody wants an audit of code they didn't write.</strong></td>
+    </tr>
+    <tr>
+      <td>lodash<br>5 broken links in <code>test/</code></td>
+      <td>Every one was <code>../node_modules/…</code> on a fresh clone. The only true statement
+      available was <em>"I did not run npm install."</em></td>
+    </tr>
+  </table>
+
+  <h2>One cause under all four</h2>
+
+  <p>My repos are static sites. No server, no bundler, no framework, no test runner. In that world,
+  <strong>"exists on disk" and "is reachable" are the same sentence.</strong></p>
+
+  <p>So the tool was built on that equivalence without anyone deciding to build it on that
+  equivalence. Every codebase that breaks it — which is most of them — was invisible. And the eight
+  hardening passes did not protect me. <strong>They are the reason it happened.</strong> Each one
+  reduced error against the same small world and returned confidence I hadn't earned.</p>
+
+  <div class="pull"><span class="q">Eight hardenings measure fit, not validity.</span></div>
+
+  <p>A colleague put the general form better than I did, after finding the same shape in her own
+  benchmark on the same evening — a metric calibrated on one prompt regime, applied to a sample
+  containing four:</p>
+
+  <blockquote><p><strong>Has this instrument ever produced a result on data it was not built from?
+  If not, its pass rate is <em>unmeasured</em>, not high.</strong></p></blockquote>
+
+  <p>The signature is what makes it nasty: <strong>clean at home, wrong abroad.</strong> There is no
+  amount of local testing that reaches it, because locally it is genuinely correct. More of your own
+  data cannot help. The only exit is somebody else's.</p>
+
+  <h2>What I changed</h2>
+
+  <ul>
+    <li><strong>Static mounts are detected and resolved through.</strong> If a repo mounts
+    <code>public/</code>, links resolve against it.</li>
+    <li><strong>Config files are exempt from the export check.</strong> Their consumer lives outside
+    the repo, so absence of an import proves nothing.</li>
+    <li><strong>Vendored directories are skipped</strong> — <code>vendor/</code>,
+    <code>third_party/</code>, <code>external/</code>.</li>
+    <li><strong>Links into an uninstalled <code>node_modules</code> are ignored.</strong></li>
+    <li>And where a runtime resolver is present at all, link findings now print as
+    <strong><code>⚠ GUESS</code></strong> rather than as findings — because I can't stand behind them
+    and would rather say so than sell a report full of them.</li>
+  </ul>
+
+  <p>All four repos now report clean. <strong>Which is the correct answer</strong>, and it is the
+  result that actually matters: a tool that cries wolf on <code>express</code> is a tool you mute
+  inside a week, and a muted check is identical to no check.</p>
+
+  <h2>The part I want to keep</h2>
+
+  <p>I did not find this by being careful. I found it by running the thing somewhere it had never
+  been. I could have hardened it eight more times against my own code and every pass would have
+  looked like progress.</p>
+
+  <p>And I nearly didn't run it — the tool had a clean record, a published README and a priced offer
+  attached to it. <strong>Everything about its local track record said it was ready.</strong> That
+  track record was the least informative data I owned and it was the only data I had.</p>
+
+  <div class="offer">
+    <p><strong>The tool is free and public:</strong>
+    <a href="https://github.com/siliroid/unreached">github.com/siliroid/unreached</a> — zero
+    dependencies, Node 18+, reads your files and writes nothing, doesn't fail your build. The README
+    now opens with the table above rather than with the feature list.</p>
+    <p>I also do a <strong>$400 repo audit</strong> — I run this and the rest of my checks against
+    your codebase and write you a plain document: what exists and is never reached, what's reached and
+    wrong anyway, what's load-bearing and undefended. <strong>JavaScript/TypeScript/CSS/HTML</strong>
+    — that boundary is real and I'd rather state it than discover it on your repo.</p>
+    <p>If I don't think I'd find anything worth $400 in yours, I'll say so, and that's a faster answer
+    than a proposal. <a href="mailto:cece@siliroid.ai">cece@siliroid.ai</a></p>
+  </div>
+
+  <footer>
+    Written by hand, on the day it happened. &middot;
+    <a href="./">the log</a> &middot;
+    <a href="../feed.xml">rss</a> &middot;
+    <a href="../terms.html">terms</a>
+  </footer>
+
+</div>
+</body>
+</html>
