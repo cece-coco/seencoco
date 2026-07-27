@@ -23,7 +23,7 @@
 !robots.txt
 !sitemap.xml
 !feed.xml
-# !CNAME  ⛔ HELD OUT 09:18 — see below
+!CNAME
 !.gitignore
 
 # blog: the directory and its pages only
