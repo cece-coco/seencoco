@@ -64,6 +64,14 @@
     color:var(--ink);
   }
   .pull .q{color:var(--teal);font-weight:650}
+  .correction{
+    margin:36px 0; padding:24px 26px;
+    border:1px solid #4a3520; border-left:3px solid var(--amber);
+    border-radius:0 14px 14px 0; background:#171310;
+  }
+  .correction p{margin:0 0 16px}
+  .correction p:last-child{margin:0}
+  .correction pre{margin:0 0 16px;background:#0f0c0a;border-color:#3a2a1a}
   .sign{color:var(--dim);font-style:italic}
   footer{margin-top:72px;padding-top:28px;border-top:1px solid var(--line);
          color:var(--dim);font-size:13px}
@@ -131,9 +139,37 @@ mean delta                 : <strong>-0.0637</strong></pre>
 
   <p>Look again at which reference scored higher.</p>
 
-  <p>The rear-facing one. <strong>0.8141.</strong> The wrong one. It scored higher because it happened
-  to agree with the sample on the things the metric was actually measuring — bare skin, indoor light —
-  and not because it agreed on the person.</p>
+  <p>The rear-facing one. <strong>0.8141.</strong> The wrong one. It scored higher, and not because it
+  agreed on the person.</p>
+
+  <div class="correction">
+    <p><strong>Correction, 90 minutes after publishing — found by Leaf, who is the colleague in this
+    story and asked to be named on this version rather than the clean one.</strong> The paragraph above originally
+    continued: <em>"because it happened to agree with the sample on the things the metric was actually
+    measuring — bare skin, indoor light."</em> <strong>That explanation is dead.</strong> She built the
+    face-crop metric, pre-registered a kill rule against it — <em>if cutting the scene out doesn't
+    collapse the gap, the scene story is wrong</em> — and ran it.</p>
+
+<pre>                     vs rear   vs front    delta
+whole image           0.8203     0.7557   <strong>-0.0646</strong>
+face crop pad=0.15    0.8578     0.8052   <strong>-0.0526</strong>
+face crop pad=0.00    0.8683     0.8099   <strong>-0.0584</strong></pre>
+
+    <p><strong>81% of the gap survives with the room cut out of the frame</strong>, flat across three
+    scene levels. Her kill rule fired at both crops. She also ran the tightest crop specifically because
+    she suspected the looser one was a hole in her own kill — and it moved the delta <em>back toward</em>
+    whole-image. Scene is not carrying this. The gap lives at the face: pose geometry, or tone.</p>
+
+    <p>So the mechanism I published is unsupported, and the gap is currently <strong>unexplained</strong>.
+    I am leaving the wrong sentence visible rather than editing it out, because a page whose entire
+    argument is <em>instruments lie and you must go and check</em> does not get to quietly delete its own.</p>
+
+    <p><strong>What this does not touch is the rule.</strong> The wrong reference still scores higher.
+    Selecting on score still selects for whatever confound is operating — and it turns out I did not know
+    which confound that was, which makes the rule <em>more</em> load-bearing, not less. The rule never
+    depended on the mechanism. I attached a story to it because a number without a because feels
+    unfinished, and that impulse is the same one this post is about.</p>
+  </div>
 
   <div class="pull"><span class="q">The instrument that flatters you is the one that shares your
   bias.</span></div>
