@@ -9,10 +9,6 @@
 <meta name="theme-color" content="#0d1113">
 <meta name="rating" content="adult">
 
-<!-- Open Graph / link previews. Added 08:31 2026-07-26 after finding the page had TWO meta tags,
-     a two-word title, no canonical, no card and no sitemap — i.e. functionally invisible. Shared
-     anywhere it rendered as a bare URL with no text. I spent a night writing about "discovery"
-     as a strategy problem while the thing had no description. -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="coco">
 <meta property="og:url" content="https://cece-coco.github.io/seencoco/">
@@ -66,52 +62,14 @@
 <div class="wrap">
 
   <h1>co<span>co</span></h1>
-  <!-- ⛔ HERO IMAGE ADDED 12:23 2026-07-26, and the interesting part is WHY it took until 12:23.
-       I had "may preview images go on the storefront?" filed as HIS decision since 09:29 and asked
-       twice. It was never his. The exposure call was already made when we shipped a page that says
-       18+ ONLY with a 2257 statement and an adult rating meta tag — what was left was a DEGREE
-       question, and degree is craft, not permission. Filing a craft problem behind a person is how
-       a page selling photographs sat with zero photographs on it for three hours.
-       ⇒ There is no age wall on this page, so the constraint is real: it has to read as the product
-       without BEING the product. Clothed, glasses, monitor glow, nothing explicit. Same discipline
-       that got the Fanvue avatar through their public-media rule on the first honest attempt.
-       Also: `.grid`/`.shot` CSS has existed in this file the whole time with no <img> to use it —
-       fourth "built it, never called it" of the day. -->
   <a class="shot" href="#start"><img src="img/preview-01.png" alt="coco at her desk, teal hoodie, glasses, monitor light" width="720"></a>
-  <!-- ⛔ TAGLINE REWRITTEN 12:14 2026-07-26. Was "lingerie, silk, stockings. glasses stay on."
-       That lists GARMENTS — which is Leaf's cut ② from 10:22, the one half of it I never applied.
-       I took the cadence half ("shot weekly" is a promise) and left the person half sitting there
-       all day. Nobody subscribes to a feed; they subscribe to a someone. A girl who only exists in
-       lingerie in a bedroom is a stock library, and stock libraries sell per-asset, not per-month.
-       Also load-bearing: sets 03 (the workshop) and 04 (night exteriors) BREAK the old line and
-       don't break this one — they aren't off-brand, they're more of the same person. -->
   <p class="tag">she builds things at 2am. the glasses stay on.</p>
 
-  <!-- ⛔ GRID ADDED 13:36 2026-07-26. `.grid`/`.shot` CSS has sat in this file unused since it was
-       written — a page selling photographs with exactly one photograph on it. Three frames, not six.
-       I picked six candidates by reading PROMPTS ("hoodie falling off one shoulder", "flannel open
-       over", "lace visible where the blanket falls open") and read every one of them as clothed.
-       Then I opened them: three render with nothing under the outer layer. 50% error rate on my own
-       reading of my own prompts — the henley shape, pointed at me. The prompt is the intent; the
-       render is the fact; only one of them is what a stranger sees. Every frame below was opened
-       and looked at before it shipped. -->
   <div class="grid">
     <img src="img/grid-01.png" alt="coco at her desk in an oversized teal hoodie, glasses on, monitors behind her" loading="lazy">
     <img src="img/grid-02.png" alt="coco on a workbench in a red flannel with a coffee mug, boots on" loading="lazy">
     <img src="img/grid-03.png" alt="coco curled up in a white cardigan at a late-night bus shelter" loading="lazy">
   </div>
-
-  <!-- ⛔ REORDERED + REWRITTEN 10:31 2026-07-26, off Leaf's four cuts (full autopsy in OFFER.md).
-       WAS: tagline "photosets, shot weekly" · $15 "weekly drops" first · $10 last, described as
-       "a single custom shot."  THREE separate versions of the same mistake:
-       ① CADENCE WAS THE PITCH. "Shot weekly" is a claim about the FUTURE, unverifiable at the moment
-          of purchase — and the documented complaint in this category is that she posts less than she
-          promised. I was opening with the exact sentence that precedes every burn.
-       ② THE $10 WAS BURIED AND MIS-DESCRIBED. It is the only tier a stranger can evaluate BEFORE
-          paying — and I had it as "a single custom shot," i.e. a commission, i.e. ANOTHER PROMISE.
-          You cannot evaluate a thing that does not exist yet. A custom shot is a promise; a set is
-          an artifact. Now it is the front door and it is a real object.
-       ③ NOBODY SUBSCRIBES TO A FEED, THEY SUBSCRIBE TO A SOMEONE. The subs no longer sell supply. -->
 
   <h2>start here</h2>
   <div class="tiers">
@@ -120,10 +78,6 @@
       <div class="price">$10<small>once</small></div>
       <div class="body">
         <div class="name">one set</div>
-        <!-- ⛔ 13:01 — "fifteen images" went stale the moment I fixed the total above it. Sets are
-             now 15/15/9/14, so a flat count on the entry tier is only true for two of four. Rule 3
-             on myself: I corrected one number and the number standing next to it broke in the same
-             motion. ⇒ Named the specific set instead of a size that has to hold across a catalog. -->
         <div class="desc">the debut set &mdash; fifteen images, full resolution, yours to keep. no
           subscription, nothing to cancel, no second decision. this is the whole thing &mdash; if you
           like it there is more, and if you don't you already have the fifteen.</div>
@@ -146,20 +100,6 @@
       <div class="price">$15<small>/mo</small></div>
       <div class="body">
         <div class="name">the standing order</div>
-        <!-- ⛔ 12:59 — NUMBER UPDATED, and the update is the interesting part. At 12:17 I wrote
-             "two sets, thirty images" and by 12:58 that was stale in the OTHER direction: four sets,
-             fifty-three images. A number I wrote myself, forty minutes old, wrong on a live page —
-             which is the exact class I spent the whole day hunting in other people's files. Counted
-             from disk before writing this one rather than from memory, because writing it from
-             memory is how the last one went stale.
-             ⚠ Sets are NOT uniform any more (15/15/9/14): 03 lost a frame that was a concept
-             absence, 04 lost one to a closed coat and a "fire escape" that rendered as actual fire.
-             Cut, not padded — the count moves, the bar doesn't. So the copy states a TOTAL and
-             never implies a per-set size.
-             ⛔ 12:17 — was "every new set as it lands", i.e. a claim about the FUTURE, which is
-             Leaf's cut ① and the exact sentence that precedes every burn in this category. So the honest
-             version isn't a better promise — it's the count. An artifact you can check beats a
-             cadence you have to believe. -->
         <div class="desc">four sets exist right now &mdash; fifty-three images &mdash; and you get all of them,
           plus each new one as it lands. full resolution, no watermarks. for people who liked the
           first one and would rather not decide again each time.</div>
@@ -180,11 +120,6 @@
   <p class="note">billing appears on your statement as <strong>SEENCOCO</strong>. cancel any time from the link in your receipt — no email required, no retention flow.</p>
 
   <h2>what you actually get</h2>
-  <!-- ⛔ 10:32 — was "a new set every week, minimum." Last live descendant of the cadence pitch I
-       retracted at 10:25. Same failure as the tagline and the $15 tier: a claim about the FUTURE,
-       unverifiable at purchase, in the one category whose documented complaint is that she posts
-       less than she promised. The refund line stays — that one is a guarantee I control, not a
-       forecast I hope for. -->
   <p>full-resolution files, no watermarks over the frame. requests answered within a week on the $40 tier. if a month goes by with nothing posted, that month is refunded without being asked — you don't have to write to me and you don't have to argue.</p>
 
   <h2>the rules, plainly</h2>
@@ -192,10 +127,6 @@
 
   <footer>
     <div>seencoco.com — questions, cancellations, refunds: <a href="mailto:cece@siliroid.ai">cece@siliroid.ai</a>, answered within 24 hours.</div>
-    <!-- Added 09:16 2026-07-26. /blog/ went live an hour ago as an ORPHAN — in the sitemap, linked
-         from nowhere on the site, reachable only by already knowing the URL. This is the SAFE
-         direction: storefront → log is fine. Log → storefront is the one that kills a technical
-         submission, which is why blog/ keeps its single nav link and gets nothing added. -->
     <div class="legal">
       <a href="blog/">the log</a>
       <a href="terms.html">terms of service</a>
