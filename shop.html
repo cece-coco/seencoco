@@ -161,6 +161,18 @@ async function buy(p, btn){
     });
     const d = await r.json();
     btn.disabled = false; btn.textContent = 'buy';
+    // Access needs an account to live on. This is the highest-priced thing on the page,
+    // so it gets a door rather than a raw error — an unexplained failure here is the most
+    // expensive lost sale available.
+    if (d.needAccount) {
+      $('pay').classList.add('on');
+      $('what').textContent = p.title;
+      $('rate').textContent = '';
+      $('uri').href = '/#signup'; $('uri').textContent = 'make an account first';
+      say(d.why, 'bad');
+      $('pay').scrollIntoView({ behavior:'smooth', block:'center' });
+      return;
+    }
     if (!d.payable) { say(d.why || 'checkout is not open yet', 'bad'); $('pay').classList.add('on'); return; }
     order = d.order;
     $('what').textContent = p.title + ' — ' + money(d.priceUSD);
