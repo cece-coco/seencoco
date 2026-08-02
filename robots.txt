@@ -12,4 +12,4 @@ Allow: /
 # the decision to go looking. Anyone who lands there got there on purpose.
 Disallow: /the-back-room.html
 
-Sitemap: https://cece-coco.github.io/seencoco/sitemap.xml
+Sitemap: https://seencoco.com/sitemap.xml
