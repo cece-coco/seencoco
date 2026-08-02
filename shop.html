@@ -136,18 +136,39 @@ fetch('https://udrbeucnxmojlvewmrbm.supabase.co/functions/v1/coco-store').then(r
   }
   (d.products || []).forEach(p => {
     const el = document.createElement('div');
-    el.className = 'tier' + (p.id === 'all-four' ? ' feature' : '');
+    // `all-four` was a product id that has not existed for a long time, so the feature styling
+    // has never once fired. A dead selector fails by doing nothing, which is why it survived.
+    el.className = 'tier' + (p.id === 'all' ? ' feature' : '');
     el.innerHTML =
-      '<div class="price">' + money(p.priceUSD) + '<small>' + (p.id === 'standing' ? 'per month' : 'once') + '</small></div>' +
+      '<div class="price">' + money(p.priceUSD) + '<small>once</small></div>' +
       '<div class="body"><div class="name"></div><div class="desc"></div></div>';
     // textContent, not innerHTML — the catalogue is mine today and the moment it is
     // ever anything but mine, an innerHTML here is a stored XSS in a page that handles
     // payment addresses.
     el.querySelector('.name').textContent = p.title;
     el.querySelector('.desc').textContent = p.desc || p.blurb || '';
+
+    // A single-set order needs to say WHICH set. It never did: the buy call posted only the
+    // product id, and confirm covered for it by falling back to a hardcoded zip. I took that
+    // fallback out this afternoon — correctly, it was handing one set to people buying seven —
+    // and taking it out is what exposed this. A refusal upstream is only a fix if the thing
+    // downstream can actually satisfy it, so here is the picker that lets it.
+    let pick = null;
+    if (p.id === 'debut' && (d.sets || []).length) {
+      pick = document.createElement('select');
+      pick.style.cssText = 'display:block;margin:10px 0;padding:6px;width:100%';
+      d.sets.forEach(s => {
+        const o = document.createElement('option');
+        o.value = s.id;
+        o.textContent = s.title || s.id;   // textContent — same reason as above
+        pick.appendChild(o);
+      });
+      el.querySelector('.body').appendChild(pick);
+    }
+
     const b = document.createElement('button');
     b.textContent = 'buy';
-    b.onclick = () => buy(p, b);
+    b.onclick = () => buy(p, b, pick ? pick.value : null);
     el.appendChild(b);
     box.appendChild(el);
   });
