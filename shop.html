@@ -155,7 +155,7 @@ fetch('https://udrbeucnxmojlvewmrbm.supabase.co/functions/v1/coco-store').then(r
 async function buy(p, btn){
   btn.disabled = true; btn.textContent = '…';
   try {
-    const r = await fetch('/buy', {
+    const r = await fetch('https://udrbeucnxmojlvewmrbm.supabase.co/functions/v1/coco-buy', {
       method:'POST', headers:{'content-type':'application/json'},
       body: JSON.stringify({ product: p.id })
     });
@@ -198,7 +198,7 @@ function say(t, cls){ const s = $('state'); s.textContent = t; s.className = 'st
 
 async function check(quiet){
   if (!order) return;
-  const r = await fetch('/confirm', {
+  const r = await fetch('https://udrbeucnxmojlvewmrbm.supabase.co/functions/v1/coco-confirm', {
     method:'POST', headers:{'content-type':'application/json'},
     body: JSON.stringify({ order })
   });
