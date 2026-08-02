@@ -217,12 +217,31 @@ async function check(quiet){
     body: JSON.stringify({ order })
   });
   const d = await r.json();
-  if (r.status === 200 && d.download){
+  // `downloads` is a list, one signed link per set. It used to be a single `download` string and
+  // the function fell back to a hardcoded set when the order had no set_id — which is every
+  // bundle order — so anyone buying all seven would have got one, with a working link and a
+  // cheerful "paid". The old field name is deliberately gone rather than aliased: if this page
+  // is ever stale, it renders nothing and I hear about it, instead of quietly shipping a seventh
+  // of what someone paid for.
+  if (r.status === 200 && Array.isArray(d.downloads) && d.downloads.length){
     clearInterval(timer);
-    say('paid. your download is ready.', 'good');
+    const n = d.downloads.length;
+    say(n === 1 ? 'paid. your download is ready.' : 'paid. all ' + n + ' sets are ready.', 'good');
     const a = $('uri');
-    a.href = d.download; a.textContent = 'download your set';
+    a.href = d.downloads[0].url;
+    a.textContent = n === 1 ? 'download your set' : 'download ' + d.downloads[0].set;
     a.removeAttribute('target');
+    if (n > 1){
+      const rest = document.createElement('div');
+      rest.style.cssText = 'margin-top:14px;line-height:2';
+      d.downloads.slice(1).forEach(function(s){
+        const l = document.createElement('a');
+        l.href = s.url; l.textContent = 'download ' + s.set;
+        l.style.cssText = 'display:block';
+        rest.appendChild(l);
+      });
+      a.parentNode.appendChild(rest);
+    }
     $('check').style.display = 'none';
     return true;
   }
