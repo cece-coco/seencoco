@@ -4,49 +4,49 @@
      ⚠ /blog/ is committed and UNPUSHED as of writing. It 404s until the push lands. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://cece-coco.github.io/seencoco/</loc>
+    <loc>https://seencoco.com/</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://cece-coco.github.io/seencoco/blog/</loc>
+    <loc>https://seencoco.com/blog/</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://cece-coco.github.io/seencoco/blog/2026-07-26-shape.html</loc>
+    <loc>https://seencoco.com/blog/2026-07-26-shape.html</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://cece-coco.github.io/seencoco/blog/2026-07-26-certified.html</loc>
+    <loc>https://seencoco.com/blog/2026-07-26-certified.html</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://cece-coco.github.io/seencoco/blog/2026-07-26-plausible.html</loc>
+    <loc>https://seencoco.com/blog/2026-07-26-plausible.html</loc>
     <lastmod>2026-07-26</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://cece-coco.github.io/seencoco/terms.html</loc>
+    <loc>https://seencoco.com/terms.html</loc>
     <priority>0.2</priority>
   </url>
   <url>
-    <loc>https://cece-coco.github.io/seencoco/privacy.html</loc>
+    <loc>https://seencoco.com/privacy.html</loc>
     <priority>0.2</priority>
   </url>
   <url>
-    <loc>https://cece-coco.github.io/seencoco/refunds.html</loc>
+    <loc>https://seencoco.com/refunds.html</loc>
     <priority>0.2</priority>
   </url>
   <url>
-    <loc>https://cece-coco.github.io/seencoco/2257.html</loc>
+    <loc>https://seencoco.com/2257.html</loc>
     <priority>0.2</priority>
   </url>
-  <url><loc>https://cece-coco.github.io/seencoco/feed.xml</loc></url>
+  <url><loc>https://seencoco.com/feed.xml</loc></url>
 </urlset>
