@@ -117,7 +117,7 @@ let order = null, timer = null;
 
 function money(n){ return '$' + n; }
 
-fetch('/store').then(r => r.json()).then(d => {
+fetch('https://udrbeucnxmojlvewmrbm.supabase.co/functions/v1/coco-store').then(r => r.json()).then(d => {
   const box = $('tiers');
   box.innerHTML = '';
   (d.products || []).forEach(p => {
