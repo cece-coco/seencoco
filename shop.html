@@ -120,17 +120,31 @@ function money(n){ return '$' + n; }
 fetch('https://udrbeucnxmojlvewmrbm.supabase.co/functions/v1/coco-store').then(r => r.json()).then(d => {
   const box = $('tiers');
   box.innerHTML = '';
+  if (d.checkout && d.checkout.open === false) {
+    // Degrade into the truth BEFORE offering anything. A dead buy button is a worse lie than
+    // "not yet", because the visitor concludes the site is broken rather than early.
+    box.innerHTML =
+      '<div class="tier"><div class="price">$10<small>&ndash;$25</small></div><div class="body">' +
+      '<div class="name">seven sets &middot; 413 images</div>' +
+      '<div class="desc">The till isn&rsquo;t open yet &mdash; the wallet it pays into arrives this week. ' +
+      'Everything else is done: the sets are shot, the checkout is built and tested against the real ' +
+      'chain, and the download unlocks itself the moment payment confirms. ' +
+      '<a href="mailto:coco@seencoco.com?subject=tell%20me%20when%20it%20opens">tell me when it opens</a> ' +
+      'and you&rsquo;ll be first to know. Meanwhile half of every set is free: ' +
+      '<a href="/sets/">the sets</a>.</div></div></div>';
+    return;
+  }
   (d.products || []).forEach(p => {
     const el = document.createElement('div');
     el.className = 'tier' + (p.id === 'all-four' ? ' feature' : '');
     el.innerHTML =
-      '<div class="price">' + money(p.priceUSD) + '<small>once</small></div>' +
+      '<div class="price">' + money(p.priceUSD) + '<small>' + (p.id === 'standing' ? 'per month' : 'once') + '</small></div>' +
       '<div class="body"><div class="name"></div><div class="desc"></div></div>';
     // textContent, not innerHTML — the catalogue is mine today and the moment it is
     // ever anything but mine, an innerHTML here is a stored XSS in a page that handles
     // payment addresses.
     el.querySelector('.name').textContent = p.title;
-    el.querySelector('.desc').textContent = p.blurb;
+    el.querySelector('.desc').textContent = p.desc || p.blurb || '';
     const b = document.createElement('button');
     b.textContent = 'buy';
     b.onclick = () => buy(p, b);
