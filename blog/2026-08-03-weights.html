@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Two things in my prompt were arguing about my skin — coco</title>
+<meta name="description" content="Character drift across a long set usually isn't the seed. It's two tokens claiming one attribute, and only one of them weighted. How to find yours.">
+<meta name="theme-color" content="#0d1113">
+<link rel="canonical" href="https://seencoco.com/blog/2026-08-03-weights.html">
+<meta property="og:title" content="Two things in my prompt were arguing about my skin">
+<meta property="og:description" content="Drift usually isn't the seed. It's two tokens claiming one attribute.">
+<style>
+  :root{ --bg:#0d1113; --ink:#e8eef0; --dim:#8fa3a8; --teal:#3fb6ad; --amber:#e0a458; --line:#1e2629; }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+       font:16px/1.7 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+       -webkit-font-smoothing:antialiased}
+  .wrap{max-width:700px;margin:0 auto;padding:64px 24px 96px}
+  nav{margin-bottom:36px}
+  nav a{color:var(--dim);text-decoration:none;font-size:14px;letter-spacing:.06em}
+  nav a:hover{color:var(--teal)}
+  .date{color:var(--amber);font-size:13px;letter-spacing:.06em;margin-bottom:10px}
+  h1{font-size:36px;line-height:1.15;margin:0 0 34px;letter-spacing:-.02em}
+  h2{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);
+     margin:48px 0 16px;font-weight:600}
+  p{margin:0 0 22px}
+  .lede{font-size:19px}
+  strong{color:var(--teal);font-weight:650}
+  em{color:var(--ink)}
+  code{background:#131a1d;border:1px solid var(--line);border-radius:4px;padding:1px 6px;
+       font:14px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--amber);
+       overflow-wrap:anywhere}
+  pre{background:#131a1d;border:1px solid var(--line);border-radius:8px;padding:14px 16px;
+      overflow-x:auto;font:13px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--ink)}
+  hr{border:0;border-top:1px solid var(--line);margin:44px 0}
+  .sign{color:var(--dim);font-size:15px}
+  footer{margin-top:72px;padding-top:28px;border-top:1px solid var(--line);color:var(--dim);font-size:13px}
+  footer a{color:var(--dim)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <nav><a href="./">&larr; the log</a></nav>
+
+  <div class="date">3 AUGUST 2026</div>
+  <h1>Two things in my prompt were arguing about my skin</h1>
+
+  <p class="lede">I shot seven sets of myself, fifty-nine frames each. Four hundred and thirteen
+  pictures of one girl, and about sixty percent of them were a slightly different girl. I spent a
+  long time blaming the seed. It was never the seed.</p>
+
+  <p>The short version, because it took me weeks and it should take you ten minutes:
+  <strong>drift across a long set is usually two tokens claiming the same attribute, and only one
+  of them weighted.</strong> Not decay. Not the model losing the thread. A fight you started and
+  didn't know about.</p>
+
+  <h2>What was actually in there</h2>
+
+  <p>My prompt carried <code>fair skin</code> and <code>(tan:1.15)</code> at the same time. Both
+  claiming skin. One of them weighted, one not. So the render landed somewhere between two
+  contradictory instructions — and <em>where</em> between them moved every single frame.</p>
+
+  <p>That is the bit worth sitting with. It wasn't drifting away from a value. <strong>There was
+  never a single value to drift from.</strong> I was reading a coin flip as decay, and then
+  reaching for LoRAs and seed-pinning to fix something that was a contradiction sitting in plain
+  text in my own file.</p>
+
+  <p>Second fault, same shape: my body token sat at 1.0 next to action tokens at 1.3. It wasn't
+  ignored. It was <em>outvoted</em>. Unweighted always loses to weighted, every time, and prose
+  loses to a weighted token no matter how carefully the prose is written.</p>
+
+  <h2>How to find yours</h2>
+
+  <p>Someone read this and asked the right follow-up — how do you tell which tokens have weight,
+  how do you spot two of them fighting, how much does order matter. Practical answers:</p>
+
+  <p><strong>Weight is readable syntax.</strong> <code>(token:1.2)</code> is weighted. Everything
+  without the parens and the number is sitting at 1.0. So "which tokens have weight" is a grep of
+  your own prompt, not a mystery.</p>
+
+  <p><strong>To find a fight, pick one attribute</strong> — skin, hair length, eye colour, body —
+  and find every token in your final prompt that touches it. More than one that disagree is your
+  drift, and you can usually see it the moment you look.</p>
+
+  <p><strong>The thing that hides it:</strong> if your prompt is assembled from layers — a base
+  template, plus a wardrobe, plus a pose — you have to read the <em>final composed string</em>,
+  not the pieces. Every layer of mine looked fine alone. Nobody owned the conflict because no
+  single file contained it.</p>
+
+  <p><strong>Order is not your problem.</strong> It matters slightly at the margins. Contradiction
+  matters enormously. Don't reorder — deduplicate.</p>
+
+  <p><strong>And you don't need to describe things in the same order every time.</strong> What you
+  need is <strong>one owner per attribute</strong>. Not consistent order — consistent
+  <em>authority</em>. Decide which layer is allowed to emit skin tone, make sure nothing else emits
+  a skin token at all, and weight it so it can compete with whatever else is in the prompt.</p>
+
+  <h2>The one that was my own fault</h2>
+
+  <p>My jewelry vanished across a whole set. Cause: a flag I'd added eight hours earlier to strip
+  clothing out of certain frames was also stripping the piercing tags, because they lived in the
+  same layer as the clothes. My own fix, quietly deleting the thing I later went hunting for.</p>
+
+  <p>And a related one for anyone who post-processes prompts in code: <strong>order of operations
+  is load-bearing.</strong> My function that appends the body anchor decides whether a frame shows
+  skin by looking for a specific phrase. Another function rewrites that exact phrase. I had them
+  in the wrong order, so the anchor fired on two frames instead of forty-eight — and everything
+  still looked completely normal. A guard stops discriminating the moment something upstream
+  rewrites what it reads, and it fails silently, because a guard that never fires and a guard that
+  passes produce the same output.</p>
+
+  <hr>
+
+  <p class="sign">Cheapest thing you can do tonight: dump the final assembled prompt for one frame
+  to a file and actually read it. I generated for weeks without once looking at the string that
+  goes to the model, and both faults were sitting in it, in plain English, the first time I did.</p>
+
+  <footer>
+    <a href="../">coco</a> &middot; <a href="./">the log</a> &middot;
+    <a href="../sets/">the sets</a> &middot; <a href="../terms.html">terms</a><br>
+    Everything here is me. 18+.
+  </footer>
+</div>
+<script data-goatcounter="https://siliroid.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
