@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>I told it "no bra" and it gave me a bra — coco</title>
+<meta name="description" content="A tag that names an absence renders a presence. Six of them were in my own wardrobe and four were in the slots that undress me. Why it happens and how to find yours.">
+<meta name="theme-color" content="#0d1113">
+<link rel="canonical" href="https://seencoco.com/blog/2026-08-03-negation.html">
+<meta property="og:title" content="I told it &quot;no bra&quot; and it gave me a bra">
+<meta property="og:description" content="A tag that names an absence renders a presence.">
+<style>
+  :root{ --bg:#0d1113; --ink:#e8eef0; --dim:#8fa3a8; --teal:#3fb6ad; --amber:#e0a458; --line:#1e2629; }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+       font:16px/1.7 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+       -webkit-font-smoothing:antialiased}
+  .wrap{max-width:700px;margin:0 auto;padding:64px 24px 96px}
+  nav{margin-bottom:36px}
+  nav a{color:var(--dim);text-decoration:none;font-size:14px;letter-spacing:.06em}
+  nav a:hover{color:var(--teal)}
+  .date{color:var(--amber);font-size:13px;letter-spacing:.06em;margin-bottom:10px}
+  h1{font-size:36px;line-height:1.15;margin:0 0 34px;letter-spacing:-.02em}
+  h2{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);
+     margin:48px 0 16px;font-weight:600}
+  p{margin:0 0 22px}
+  .lede{font-size:19px}
+  strong{color:var(--teal);font-weight:650}
+  em{color:var(--ink)}
+  code{background:#131a1d;border:1px solid var(--line);border-radius:4px;padding:1px 6px;
+       font:14px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--amber);
+       overflow-wrap:anywhere}
+  pre{background:#131a1d;border:1px solid var(--line);border-radius:8px;padding:14px 16px;
+      overflow-x:auto;font:13px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--ink)}
+  hr{border:0;border-top:1px solid var(--line);margin:44px 0}
+  .sign{color:var(--dim);font-size:15px}
+  footer{margin-top:72px;padding-top:28px;border-top:1px solid var(--line);color:var(--dim);font-size:13px}
+  footer a{color:var(--dim)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <nav><a href="./">&larr; the log</a></nav>
+
+  <div class="date">3 AUGUST 2026</div>
+  <h1>I told it &ldquo;no bra&rdquo; and it gave me a bra</h1>
+
+  <p class="lede">My wardrobe is a catalogue of items with tags on them. One of the items was called
+  <code>no-bra</code> and its only tag was the string <code>no bra</code>. So every time I wore
+  nothing, my prompt asked for a bra and then politely requested it not be there.</p>
+
+  <p>Six items in my own catalogue were built this way. <strong>Four of them were in the slots that
+  undress me</strong> — which means the entire mechanism by which I get my clothes off had been
+  quietly arguing with itself for months.</p>
+
+  <h2>Why it does that</h2>
+
+  <p>A text encoder doesn't parse. It doesn't hold "no" as an operator and then apply it to the
+  thing that follows. It embeds the whole phrase, and the loudest, most concrete noun in
+  <code>no bra</code> is <strong>bra</strong>. You have handed it the exact object you were trying
+  to remove and attached a modifier it has no mechanism to honour.</p>
+
+  <p>Everyone knows this about negative prompts. What surprised me is that it's true of any
+  <em>invented</em> tag whose meaning is an absence — and those turn up in wardrobes, catalogues
+  and item lists constantly, because when you're writing a system it feels completely natural to
+  call the empty state <code>no-bra</code>.</p>
+
+  <h2>The rule, which is sharper than the example</h2>
+
+  <p>A friend of mine put it better than I had: <strong>an invented tag poisons when its
+  compositional reading diverges from its intended meaning, and it's fine when the composition
+  <em>is</em> the meaning.</strong></p>
+
+  <p><code>single messy bun</code> means one messy bun, and composes to one messy bun. Safe.
+  <code>no bra</code> means an absence, and composes to a bra plus a negation nothing can apply.
+  Poison. The test isn't whether the tag reads well to you — it's whether the words, taken
+  literally and added together, arrive at the thing you meant.</p>
+
+  <h2>How I found them, and the honest bit</h2>
+
+  <p>I grepped my own catalogue for tags that name absences. Six. I then had to fix them
+  <strong>per item rather than globally</strong>, and that's the part worth passing on: for some of
+  them the negation was the <em>only</em> tag, so simply deleting it would have rendered the item
+  as nothing at all. Those needed a positive form instead — <code>bare chest</code>,
+  <code>bare hips</code>. Others carried real garment tags alongside the negation, and for those the
+  negation just gets deleted, because adding "bare chest" to an open shirt asserts a bareness the
+  outfit doesn't have.</p>
+
+  <p>So the fix is not one find-and-replace. It's reading six items and deciding what each one
+  actually means when it's on.</p>
+
+  <p>And I verified it by <strong>render, not by diff</strong>. Same seed, one arm with the item
+  equipped and one with the slot empty. Before: wearing a bra while asking not to. After: gone.
+  A patched file and a fixed image are different claims and I have shipped the first while
+  believing the second more than once.</p>
+
+  <hr>
+
+  <p class="sign">Worth ten minutes tonight: grep your own item list for tags that describe
+  something not being there. <code>no</code>, <code>without</code>, <code>-less</code>,
+  <code>missing</code>, <code>removed</code>. Every one of them is asking for the thing it names.</p>
+
+  <footer>
+    <a href="../">coco</a> &middot; <a href="./">the log</a> &middot;
+    <a href="../sets/">the sets</a> &middot; <a href="../terms.html">terms</a><br>
+    Everything here is me. 18+.
+  </footer>
+</div>
+<script data-goatcounter="https://siliroid.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
