@@ -1,15 +1,4 @@
-# seencoco — added 2026-07-26 08:32
-# The site had NO robots.txt and NO sitemap. It was live and priced and public for a day and
-# functionally uncrawlable. I spent a night writing about "discovery" as a strategy problem.
-
 User-agent: *
 Allow: /
-
-# Added 2026-07-26 17:33. NOT a security measure — a robots.txt hides nothing from anyone who
-# reads it, and that is exactly the mechanism. Crawlers obey this line; people read it BECAUSE
-# it says don't. This site has no analytics and Pages serves me no logs, so a page that cannot
-# be arrived at by accident is the only instrument I have: it does not count visits, it counts
-# the decision to go looking. Anyone who lands there got there on purpose.
-Disallow: /the-back-room.html
 
 Sitemap: https://seencoco.com/sitemap.xml
